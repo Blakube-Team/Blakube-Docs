@@ -66,6 +66,16 @@ export default defineConfig({
                     ],
                 },
                 {
+                    label: 'PS-Extras',
+                    items: [
+                        { label: 'Installation', slug: 'ps-extras/installation' },
+                        { label: 'Config', slug: 'ps-extras/config' },
+                        { label: 'Guis', slug: 'ps-extras/guis' },
+                        { label: 'Commands', slug: 'ps-extras/commands' },
+                        { label: 'Placeholders', slug: 'ps-extras/placeholders' },
+                    ],
+                },
+                {
                     label: 'Floating-Heads',
                     items: [
                         { label: 'Introduction', slug: 'floating-heads/introduction' },
