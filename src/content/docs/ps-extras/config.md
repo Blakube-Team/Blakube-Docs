@@ -9,6 +9,7 @@ Welcome to the **PS-Extras** documentation.
 ## Settings
 
 ```yml title="settings.yml"
+# Location where players will be teleported when they are kicked/banned from the region.
 lobby:
   world: world
   x: 0.5
@@ -17,9 +18,13 @@ lobby:
   yaw: 0.0
   pitch: 0.0
 
+# Chat promp settings
 prompt:
+  # Word used to cancel the input
   cancel-word: "cancel"
+  # Time (in seconds) before the prompt expires
   timeout-seconds: 60
+  # Range for integer inputs (used at priority prompt for example)
   int-min: 1
   int-max: 100
 
@@ -29,15 +34,13 @@ config-version: 2
 ```
 
 ```yml title="database.yml"
-# Available drivers: "h2" (local, recommended) and "mysql" (remote).
+# Available drivers: "h2" (local, recommended) and "mysql" (remote, multi-server).
 driver: h2
 host: localhost
 port: 3006
 db-name: psaddon
 username: psaddon_user
 password: SECRET_PASSWORD
-
-
 
 
 # DO NOT TOUCH THIS!
@@ -47,6 +50,8 @@ config-version: 1
 ## Messages
 
 ```yml title="messages.yml"
+# Messages and translation.
+# Supports MiniMessage, legacy format (& basic and hex) and PlaceholderAPI in any message.
 player-not-found: "<red>Player not found!"
 no-permission: "<red>You do not have permission to perform this!"
 region-entry-banned: "<red>You are banned from entering this region!"
