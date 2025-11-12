@@ -295,3 +295,62 @@ on-hurt:
     range: 3.2
     particle: "CLOUD"
  ```
+
+
+# Conditions
+Abilities can also have conditions to control when they are executed. Here are some available conditions:
+
+### Comparison
+All the kwon comparison operators are supported: `==`, `!=`, `<`, `>`, `<=`, `>=`.
+
+For `Strings` (text), only `=`, `!=`, `==` and `!==` are supported. The difference between `=` and `==` is that the first one is case-insensitive, while the second one is case-sensitive.
+
+
+**Examples:**
+```yml
+periodic:
+  flame-trail:
+    condition: "%world_time% > 13000" # Only at night
+    delay: 20 # Each second
+    # Ability content ...
+```
+
+```yml
+periodic:
+  bright-light:
+    # "=" is case-insensitive, will work with: "myhome", "MyHome", "MYHOME", etc.
+    condition: "%shplots_home% = myhome"
+    # "==" is case-sensitive, will only work with: "myhome".
+    #condition: "%shplots_home% == myhome"
+    
+    # Ability content ...
+```
+
+### Multiple Conditions
+You can also combine multiple conditions using `AND` (`&`), `OR` (`|`) and `XOR` (`^`) operators.
+
+**Examples:**
+```yml
+periodic:
+  spawn-heal:
+    # Only at night and in world "spawn" world
+    condition: "%world_time% => 13000 & %world_name% == spawn"
+    delay: 20 # Each second
+
+    # Ability content ...
+```
+
+
+### Probability
+You can set a probability (in percentage) for an ability to execute. This adds an element of randomness to the ability activation.
+
+**Example:**
+```yml
+on-hurt:
+  health-warning:
+    condition: "%player_health% <= 6.0"
+    delay: 600 # Each 30 seconds
+    probability: 35 # 35% chance to execute
+    
+    # Ability content ...
+```
