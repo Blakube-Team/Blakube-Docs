@@ -56,6 +56,17 @@ export default defineConfig({
                     ],
                 },
                 {
+                    label: 'SH-Pets',
+                    items: [
+                        { label: 'Introduction', slug: 'sh-pets/intro/intro' },
+                        { label: 'Installation', slug: 'sh-pets/intro/installation' },
+                        { label: 'How to', slug: 'sh-pets/config/how-to' },
+                        { label: 'Abilities and conditions', slug: 'sh-pets/config/abilities' },
+                        { label: 'Placeholders', slug: 'sh-pets/config/placeholders' },
+                        { label: 'Commands', slug: 'sh-pets/config/commands' },
+                    ],
+                },
+                {
                     label: 'Disasters',
                     items: [
                         { label: 'Introduction', slug: 'disasters/intro/introduction' },
