@@ -1,2 +1,2 @@
-#  SmartsHub Documentation Center
-Search all our documentation in https://docs.smartshub.dev/
+#  Blakube docs
+Documentation in https://docs.blakube.com/

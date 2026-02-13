@@ -1,11 +1,8 @@
-/* Theme modification for SmartsHub by jallox*/
-
 @font-face {
 	font-family: "GoogleSansCode";
 	src: url("/font/GoogleSansCode-Regular.ttf");
 }
 
-/* Dark mode colors. */
 :root {
 	--sl-color-accent-low: #13434f;
 	--sl-color-accent: #34d0ff;
@@ -19,7 +16,7 @@
 	--sl-color-gray-6: #24272f;
 	--sl-color-black: #17181c;
 }
-/* Light mode colors. */
+
 :root[data-theme='light'] {
 	--sl-color-accent-low: #00c3ff;
 	--sl-color-accent: #34d0ff;
@@ -44,7 +41,7 @@
 	border-color: var(--sl-color-accent);
 }
 
-.smartshub {
+.blakube {
 	color: var(--sl-color-accent);
 	font-weight: extrabold;
 }
