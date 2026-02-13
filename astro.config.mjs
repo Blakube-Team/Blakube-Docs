@@ -21,6 +21,7 @@ export default defineConfig({
                         { label: 'Hooks', slug: 'bk-tops/config/hooks' },
                         { label: 'Placeholders', slug: 'bk-tops/config/placeholders' },
                         { label: 'Commands', slug: 'bk-tops/config/commands' },
+                        { label: 'Addons', slug: 'bk-tops/addons/notify' },
                         { label: 'API', slug: 'bk-tops/api/getting-started' },
                     ],
                 }

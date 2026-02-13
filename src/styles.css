@@ -3,7 +3,7 @@
 	src: url("/font/GoogleSansCode-Regular.ttf");
 }
 
-:root {
+:root, [data-theme='dark'] {
 	--sl-color-accent-low: #13434f;
 	--sl-color-accent: #34d0ff;
 	--sl-color-accent-high: #00c3ff;
@@ -17,7 +17,7 @@
 	--sl-color-black: #17181c;
 }
 
-:root[data-theme='light'] {
+[data-theme='light'] {
 	--sl-color-accent-low: #00c3ff;
 	--sl-color-accent: #34d0ff;
 	--sl-color-accent-high:#13434f;
