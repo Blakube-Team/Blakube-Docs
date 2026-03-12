@@ -89,6 +89,8 @@ Formatting notes:
 ### Commands & Permissions
 - Command: `/bktopsnotify reload` (alias `/bktn`)
     - Reloads both `config.yml` and `discord.yml`
+- Command: `/bktopsnotify test <type>` (alias `/bktn`)
+    - Simulates the events in order to test the configs and improve the experience for server owners.
 - Permission: `bktops.admin` (default: op)
 
 ---
