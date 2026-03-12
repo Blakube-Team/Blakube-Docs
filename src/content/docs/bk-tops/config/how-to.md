@@ -113,6 +113,10 @@ The tops are processed in a specialized queue system to ensure that the server's
 - **Passive Processing (Topper-like)**: If you set both `online` and `rotative` to `false`, the plugin will only update a player's data when they join or leave the server. This is the most performance-friendly mode and works exactly like the plugin "Topper".
 - **Batch Processing**: Instead of updating everything at once, the plugin processes players in small groups (batches). This distributes the workload over several ticks, preventing any spikes in CPU usage.
 
+## How to bypass appear at a top
+If you don't want that some users (like staffs) appear at some tops, simply give them the permission `bktops.bypass.<top-id>`.
+
+
 ## Team Tops
 The `team` and `timed-team` types are designed to work with supported team/clan plugins (like BentoBox, BetterTeams, FactionsUUID, etc.). 
 
