@@ -122,6 +122,22 @@ The `config.yml` file provides a lot of powerful customization options. I can't 
 # Documentation: https://docs.blakube.com/bk-tops/intro/introduction/
 
 # ========================================
+# SPACED ALIGNMENT
+# ========================================
+spaced:
+  # Character used to fill the space between name and value
+  # Examples: "-", ".", "·", " ", "─"
+  char: "-"
+
+  # Maximum total length (name + spaces + value)
+  # This ensures alignment across all entries
+  # Example with length 40:
+  #   NoHugsOnlyBugs --------- 123,456
+  #   PepitoPerez ------------ 242,942
+  #   MenganitoIto ----------- 103,924
+  length: 40
+
+# ========================================
 # NUMBER FORMATTING
 # ========================================
 number-format:
