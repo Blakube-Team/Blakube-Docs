@@ -9,6 +9,7 @@ There are four types of placeholders:
 - `%bktops_value_<top-id>_<position>%`
 - `%bktops_spaced_<top-id>_<position>%`
 - `%bktops_time_<top-id>%`
+- `%bktops_myposition_<top-id>%`
 
 `<top-id>` is the ID of the top configured in the `tops.yml` file.
 
@@ -16,6 +17,8 @@ There are four types of placeholders:
 
 ## Some examples:
 - `%bktops_name_money_1%`: returns the name of the player at position 1 for the `money` top.
+- `%bktops_myposition_money%`: returns your position at the `money` top (1, 3, 23, etc.) or a
+configurable message from lang like "You are not in the top!" if the player exceed the top size.
 - `%bktops_value_money_1%`: returns the value of the player at position 1 for the `money` top.
 - `%bktops_name_team_money_1%`: returns the name of the team at position 1 for the `team_money` top.
 - `%bktops_value_team_money_1%`: returns the value of the team at position 1 for the `team_money` top.
