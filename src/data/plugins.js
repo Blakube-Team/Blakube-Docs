@@ -1,20 +1,22 @@
 // ============================================================
 //  src/data/plugins.js
-//  Añade o edita plugins aquí. Se reflejan automáticamente
-//  en la página principal, el carrusel y el footer.
 // ============================================================
 
 export const plugins = [
   {
-    id: "bk-tops",                          // debe coincidir con la carpeta en src/content/docs/
+    id: "bk-tops",
     name: "BK-Tops",
     description: "Advanced leaderboard system with dynamic rankings, team support, smart caching and async processing for zero lag.",
-    price: "Free",                          // "Free" o "$7.99"
-    logo: "/brand/bk-tops-logo.png",        // imagen en public/brand/
-    banner: "/brand/bk-tops-banner.jpg",    // imagen en public/brand/
+    price: "Free",
+    discount: null,
+    originalPrice: null,
+    featured: false,
+    featuredLabel: "Featured",
+    logo: "/brand/bk-tops-logo.png",
+    banner: "/brand/bk-tops-banner.jpg",
     tags: ["Leaderboards", "Teams", "MySQL", "PlaceholderAPI", "Paper 1.21+"],
     links: {
-      spigot: "#",                          // reemplaza con URL real
+      spigot: "#",
       modrinth: "https://modrinth.com/organization/blakube",
       builtbybit: "https://builtbybit.com/members/blakube.364216/",
     },
@@ -24,6 +26,10 @@ export const plugins = [
     name: "BK-Gradients",
     description: "Full visual identity system. HEX gradient prefixes, nicks, suffixes and tags with 100% YAML-driven GUIs and live reload.",
     price: "$7.99",
+    discount: "20%",
+    originalPrice: "$9.99",
+    featured: true,
+    featuredLabel: "On Sale",
     logo: "/brand/bk-gradients-logo.png",
     banner: "/brand/bk-gradients-banner.jpg",
     tags: ["Cosmetics", "MiniMessage", "SQLite", "MySQL", "Paper 1.21+"],
@@ -33,20 +39,16 @@ export const plugins = [
       builtbybit: "https://builtbybit.com/members/blakube.364216/",
     },
   },
-
-  // ── Para añadir un nuevo plugin, copia este bloque: ──────
   // {
-  //   id: "bk-nuevo",                       // debe coincidir con src/content/docs/bk-nuevo/
+  //   id: "bk-nuevo",
   //   name: "BK-Nuevo",
-  //   description: "Descripción del plugin.",
+  //   description: "Descripción.",
   //   price: "$4.99",
+  //   discount: null, originalPrice: null,
+  //   featured: false, featuredLabel: "New",
   //   logo: "/brand/bk-nuevo-logo.png",
   //   banner: "/brand/bk-nuevo-banner.jpg",
-  //   tags: ["Tag1", "Tag2"],
-  //   links: {
-  //     spigot: "#",
-  //     modrinth: "#",
-  //     builtbybit: "#",
-  //   },
+  //   tags: ["Tag1"],
+  //   links: { spigot: "#", modrinth: "#", builtbybit: "#" },
   // },
 ];
