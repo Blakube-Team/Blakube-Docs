@@ -1,5 +1,7 @@
 // ============================================================
 //  src/data/plugins.js
+//  Añade o edita plugins aquí. Se reflejan automáticamente
+//  en la página principal y en el footer.
 // ============================================================
 
 export const plugins = [
@@ -15,11 +17,14 @@ export const plugins = [
     logo: "/brand/bk-tops-logo.png",
     banner: "/brand/bk-tops-banner.jpg",
     tags: ["Leaderboards", "Teams", "MySQL", "PlaceholderAPI", "Paper 1.21+"],
-    links: {
-      spigot: "#",
-      modrinth: "https://modrinth.com/organization/blakube",
-      builtbybit: "https://builtbybit.com/members/blakube.364216/",
-    },
+
+    // Botones de descarga — nombre y link configurables, añade los que quieras
+    downloadLinks: [
+      { label: "Spigot",     href: "#" },
+      { label: "Modrinth",   href: "https://modrinth.com/organization/blakube" },
+      { label: "BuiltByBit", href: "https://builtbybit.com/members/blakube.364216/" },
+      // { label: "Polymart", href: "https://polymart.org/..." },
+    ],
   },
   {
     id: "bk-gradients",
@@ -33,14 +38,17 @@ export const plugins = [
     logo: "/brand/bk-gradients-logo.png",
     banner: "/brand/bk-gradients-banner.jpg",
     tags: ["Cosmetics", "MiniMessage", "SQLite", "MySQL", "Paper 1.21+"],
-    links: {
-      spigot: "#",
-      modrinth: "https://modrinth.com/organization/blakube",
-      builtbybit: "https://builtbybit.com/members/blakube.364216/",
-    },
+
+    downloadLinks: [
+      { label: "Spigot",     href: "#" },
+      { label: "Modrinth",   href: "https://modrinth.com/organization/blakube" },
+      { label: "BuiltByBit", href: "https://builtbybit.com/members/blakube.364216/" },
+    ],
   },
+
+  // ── Para añadir un nuevo plugin, copia este bloque: ──────
   // {
-  //   id: "bk-nuevo",
+  //   id: "bk-nuevo",                 // coincide con src/content/docs/bk-nuevo/
   //   name: "BK-Nuevo",
   //   description: "Descripción.",
   //   price: "$4.99",
@@ -48,7 +56,10 @@ export const plugins = [
   //   featured: false, featuredLabel: "New",
   //   logo: "/brand/bk-nuevo-logo.png",
   //   banner: "/brand/bk-nuevo-banner.jpg",
-  //   tags: ["Tag1"],
-  //   links: { spigot: "#", modrinth: "#", builtbybit: "#" },
+  //   tags: ["Tag1", "Tag2"],
+  //   downloadLinks: [
+  //     { label: "Spigot",   href: "#" },
+  //     { label: "Modrinth", href: "#" },
+  //   ],
   // },
 ];

@@ -1,7 +1,9 @@
 ---
 import { plugins } from '../data/plugins.js';
-import { team } from '../data/team.js';
+import { team }    from '../data/team.js';
 import { servers } from '../data/servers.js';
+import { community } from '../data/community.js';
+import { promo }   from '../data/promo.js';
 const serversLoop = [...servers, ...servers];
 ---
 <!DOCTYPE html>
@@ -15,12 +17,12 @@ const serversLoop = [...servers, ...servers];
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <style>
-:root {
+:root{
   --blue:#2B7FFF;--blue-dim:#1a5fd4;--blue-subtle:rgba(43,127,255,0.08);
   --accent:#00d4ff;--font:'Poppins',sans-serif;
   --radius-card:16px;--radius-md:10px;--radius-sm:8px;
 }
-[data-theme="dark"] {
+[data-theme="dark"]{
   --bg:#080c14;--surface:#0f1624;--surface2:#141c2e;
   --border:rgba(43,127,255,0.2);--border-dim:rgba(255,255,255,0.07);
   --text:#e8edf5;--muted:#6b7a99;
@@ -28,7 +30,7 @@ const serversLoop = [...servers, ...servers];
   --card-shadow:0 4px 24px rgba(0,0,0,0.35);
   --card-shadow-hover:0 8px 32px rgba(43,127,255,0.10);
 }
-[data-theme="light"] {
+[data-theme="light"]{
   --bg:#f0f2f8;--surface:#ffffff;--surface2:#e8ecf5;
   --border:rgba(43,127,255,0.2);--border-dim:rgba(0,0,0,0.07);
   --text:#0d1321;--muted:#5a6a8a;
@@ -36,16 +38,11 @@ const serversLoop = [...servers, ...servers];
   --card-shadow:0 2px 16px rgba(0,0,0,0.07);
   --card-shadow-hover:0 6px 28px rgba(43,127,255,0.13);
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-
-a,button,[role=button]{cursor:pointer;}
-a:hover,button:hover,.plugin-card:hover,.team-card:hover,.carousel-item:hover,.social-btn:hover,.dl-btn:hover,.icon-link:hover,.nav-icon:hover,.plugin-doc-link:hover{cursor:pointer;}
+a,button,[role=button],.plugin-card,.team-card,.carousel-item{cursor:pointer;}
 img{cursor:default;}
-img[onclick],img.clickable{cursor:pointer;}
-
 .wrap{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}
 
 /* THEME TOGGLE */
@@ -57,7 +54,7 @@ img[onclick],img.clickable{cursor:pointer;}
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-dim);padding:.85rem 0;transition:background .3s;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
-.nav-logo{text-decoration:none;display:flex;align-items:center;cursor:pointer;}
+.nav-logo{text-decoration:none;display:flex;align-items:center;}
 .nav-logo img{height:36px;display:block;}
 .nav-links{display:flex;gap:2rem;list-style:none;flex:1;justify-content:center;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
@@ -79,14 +76,13 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .hero p{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2.5rem;font-weight:300;}
 [data-theme="light"] .hero p{color:var(--muted);}
 .hero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:.7rem 1.5rem;border-radius:var(--radius-sm);font-weight:600;font-size:.85rem;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:var(--font);}
 .btn-primary{background:var(--blue);color:#fff;}
 .btn-primary:hover{background:var(--blue-dim);transform:translateY(-1px);}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
 [data-theme="light"] .btn-ghost{background:var(--surface2);color:var(--text);border-color:var(--border-dim);}
 .btn-ghost:hover{background:rgba(255,255,255,.18);}
+[data-theme="light"] .btn-ghost:hover{background:var(--border-dim);}
 
 /* SECTION */
 .section{padding:4rem 0;}
@@ -94,17 +90,35 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--text);margin-bottom:.4rem;letter-spacing:-.3px;}
 .section-sub{color:var(--muted);font-size:.9rem;margin-bottom:2.5rem;max-width:480px;line-height:1.7;}
 
+/* PROMO BANNER */
+.promo-section{padding:2.5rem 0;}
+.promo-banner{border-radius:var(--radius-card);overflow:hidden;position:relative;border:1px solid var(--border);box-shadow:var(--card-shadow);}
+.promo-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;}
+.promo-gradient{position:absolute;inset:0;}
+.promo-inner{position:relative;z-index:1;display:flex;align-items:center;gap:2rem;padding:1.75rem 2rem;flex-wrap:wrap;}
+.promo-left{display:flex;align-items:center;gap:1.25rem;flex:1;min-width:200px;}
+.promo-logo{width:64px;height:64px;border-radius:12px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);}
+.promo-logo img{width:100%;height:100%;object-fit:cover;}
+.promo-text{flex:1;}
+.promo-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.25rem;}
+.promo-desc{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:420px;}
+.promo-right{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.promo-price-block{text-align:right;}
+.promo-original{font-size:.75rem;color:rgba(255,255,255,.5);text-decoration:line-through;}
+.promo-discount{font-size:.65rem;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:.5px;}
+.promo-price{font-size:1.5rem;font-weight:800;color:#fff;}
+.promo-buttons{display:flex;gap:.6rem;flex-wrap:wrap;}
+.promo-btn-primary{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.25rem;border-radius:var(--radius-sm);background:#fff;color:#0d1321;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;border:none;font-family:var(--font);}
+.promo-btn-primary:hover{background:#e8ecf5;transform:translateY(-1px);}
+.promo-btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.25rem;border-radius:var(--radius-sm);background:rgba(255,255,255,.12);color:#fff;font-weight:600;font-size:.82rem;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,.2);font-family:var(--font);}
+.promo-btn-ghost:hover{background:rgba(255,255,255,.2);}
+
 /* PLUGIN CARDS */
 .plugin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
 .plugin-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius-card);overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column;box-shadow:var(--card-shadow);position:relative;}
 .plugin-card:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:var(--card-shadow-hover);}
-
-/* featured badge */
-.featured-badge{position:absolute;top:12px;right:12px;z-index:10;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;}
-
-/* discount ribbon */
-.discount-ribbon{position:absolute;top:12px;left:12px;z-index:10;background:#ef4444;color:#fff;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:100px;}
-
+.featured-badge{position:absolute;top:12px;right:12px;z-index:10;background:var(--blue);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;}
+.discount-ribbon{position:absolute;top:12px;left:12px;z-index:10;background:#ef4444;color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;}
 .plugin-banner{width:100%;height:130px;background:var(--surface2);position:relative;overflow:hidden;flex-shrink:0;background-size:cover;background-position:center;}
 .plugin-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--surface) 100%);}
 .plugin-body{padding:0 1.5rem 1.5rem;display:flex;flex-direction:column;flex:1;}
@@ -113,10 +127,10 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .plugin-logo img{width:100%;height:100%;object-fit:cover;border-radius:10px;}
 .plugin-price{background:var(--surface2);border:1px solid var(--border-dim);border-radius:var(--radius-md);padding:.4rem .8rem;text-align:right;margin-top:1rem;}
 .plugin-price-label{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+.plugin-price-original{font-size:.72rem;color:var(--muted);text-decoration:line-through;margin-bottom:1px;}
+.plugin-price-discount{font-size:.62rem;font-weight:700;color:#ef4444;letter-spacing:.5px;}
 .plugin-price-val{font-size:1.1rem;font-weight:800;color:var(--text);line-height:1;}
 .plugin-price-val.free{color:#22c55e;}
-.plugin-price-original{font-size:.75rem;color:var(--muted);text-decoration:line-through;margin-bottom:1px;}
-.plugin-price-discount{font-size:.65rem;font-weight:700;color:#ef4444;letter-spacing:.5px;}
 .plugin-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.4rem;}
 .plugin-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;flex:1;}
 .plugin-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;}
@@ -154,8 +168,10 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .team-banner{height:80px;width:100%;background-size:cover;background-position:center;}
 .avatar-wrap{display:flex;justify-content:center;margin-top:-28px;margin-bottom:.75rem;}
 .avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#fff;border:3px solid var(--surface);position:relative;z-index:1;overflow:hidden;flex-shrink:0;}
-.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;}
-.avatar-fallback{position:relative;z-index:1;pointer-events:none;}
+.avatar img.avatar-img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;opacity:0;transition:opacity .3s;}
+.avatar img.avatar-img.loaded{opacity:1;}
+.avatar-fallback{position:relative;z-index:0;}
+.avatar:has(.avatar-img.loaded) .avatar-fallback{display:none;}
 .team-body{padding:0 1.25rem 1.25rem;text-align:center;}
 .member-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.25rem;}
 .member-role{display:inline-block;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:2px 10px;border-radius:100px;margin-bottom:1rem;}
@@ -165,15 +181,17 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 
 /* FOOTER */
 footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2rem;}
-.footer-inner{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2rem;margin-bottom:2.5rem;}
+.footer-inner{display:grid;grid-template-columns:1.5fr repeat(2,1fr);gap:2rem;margin-bottom:2.5rem;}
 .footer-brand{display:flex;flex-direction:column;gap:.75rem;}
 .footer-logo{font-size:1.1rem;font-weight:800;color:var(--blue);letter-spacing:1px;}
 .footer-tagline{font-size:.8rem;color:var(--muted);line-height:1.6;max-width:220px;}
 .footer-social{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem;}
 .footer-col h4{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:1rem;}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
-.footer-col a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-col a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:6px;}
 .footer-col a:hover{color:var(--text);}
+.footer-badge{font-size:.58rem;background:var(--blue);color:#fff;padding:1px 6px;border-radius:100px;font-weight:700;vertical-align:middle;}
+.footer-badge.sale{background:#ef4444;}
 .footer-bottom{border-top:1px solid var(--border-dim);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .footer-copy{font-size:.75rem;color:var(--muted);}
 .footer-copy span{color:var(--blue);font-weight:600;}
@@ -195,19 +213,19 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   .team-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
   .hero h1{font-size:2rem;}
   .section{padding:2.5rem 0;}
+  .promo-inner{flex-direction:column;gap:1rem;}
+  .promo-right{width:100%;justify-content:space-between;}
 }
 @media(max-width:480px){
   .wrap{padding:0 1rem;}
   .hero{min-height:420px;padding:3rem 0;}
   .footer-inner{grid-template-columns:1fr;}
-  .social-grid{gap:.5rem;}
   .social-btn{font-size:.78rem;padding:.5rem .9rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="wrap nav-inner">
     <a href="/" class="nav-logo"><img src="/brand/BLAKUBE_ICON.png" alt="Blakube"></a>
@@ -220,8 +238,8 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
     <div class="nav-right">
       <div class="theme-toggle">
         <button class="theme-btn" id="btn-light" onclick="setTheme('light')" title="Light"><i class="bi bi-sun"></i></button>
-        <button class="theme-btn" id="btn-auto" onclick="setTheme('auto')" title="Auto"><i class="bi bi-circle-half"></i></button>
-        <button class="theme-btn" id="btn-dark" onclick="setTheme('dark')" title="Dark"><i class="bi bi-moon"></i></button>
+        <button class="theme-btn" id="btn-auto"  onclick="setTheme('auto')"  title="Auto"><i class="bi bi-circle-half"></i></button>
+        <button class="theme-btn" id="btn-dark"  onclick="setTheme('dark')"  title="Dark"><i class="bi bi-moon"></i></button>
       </div>
       <a href="https://github.com/Blakube/" target="_blank" class="nav-icon" title="GitHub"><i class="bi bi-github"></i></a>
       <a href="https://discord.blakube.com/" target="_blank" class="nav-icon" title="Discord"><i class="bi bi-discord"></i></a>
@@ -229,7 +247,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-bg-overlay"></div>
@@ -252,40 +269,28 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   <p class="section-sub">Every plugin ships with full documentation, async processing and zero main-thread lag on Paper 1.21+.</p>
   <div class="plugin-grid">
     {plugins.map((plugin) => (
-      <div class={`plugin-card${plugin.featured ? ' plugin-featured' : ''}`}>
-        {plugin.featured && (
-          <div class="featured-badge"><i class="bi bi-star-fill"></i>{plugin.featuredLabel}</div>
-        )}
-        {plugin.discount && (
-          <div class="discount-ribbon"><i class="bi bi-tag-fill"></i>{plugin.discount} OFF</div>
-        )}
+      <div class="plugin-card">
+        {plugin.featured && <div class="featured-badge"><i class="bi bi-star-fill"></i>{plugin.featuredLabel}</div>}
+        {plugin.discount && <div class="discount-ribbon"><i class="bi bi-tag-fill"></i>{plugin.discount} OFF</div>}
         <div class="plugin-banner" style={`background-image:url('${plugin.banner}');`}></div>
         <div class="plugin-body">
           <div class="plugin-header">
-            <div class="plugin-logo">
-              <img src={plugin.logo} alt={plugin.name} />
-            </div>
+            <div class="plugin-logo"><img src={plugin.logo} alt={plugin.name} /></div>
             <div class="plugin-price">
               <div class="plugin-price-label">Price</div>
-              {plugin.discount && plugin.originalPrice && (
-                <div class="plugin-price-original">{plugin.originalPrice}</div>
-              )}
-              {plugin.discount && (
-                <div class="plugin-price-discount">{plugin.discount} OFF</div>
-              )}
-              <div class={`plugin-price-val${plugin.price === 'Free' ? ' free' : ''}`}>{plugin.price}</div>
+              {plugin.originalPrice && <div class="plugin-price-original">{plugin.originalPrice}</div>}
+              {plugin.discount && <div class="plugin-price-discount">{plugin.discount} OFF</div>}
+              <div class={`plugin-price-val${plugin.price==='Free'?' free':''}`}>{plugin.price}</div>
             </div>
           </div>
           <div class="plugin-name">{plugin.name}</div>
           <div class="plugin-desc">{plugin.description}</div>
-          <div class="plugin-tags">
-            {plugin.tags.map((tag) => <span class="tag">{tag}</span>)}
-          </div>
+          <div class="plugin-tags">{plugin.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
           <div class="plugin-footer">
             <div class="plugin-dl-links">
-              {plugin.links.spigot && <a href={plugin.links.spigot} target="_blank" class="dl-btn"><i class="bi bi-download"></i>Spigot</a>}
-              {plugin.links.modrinth && <a href={plugin.links.modrinth} target="_blank" class="dl-btn"><i class="bi bi-download"></i>Modrinth</a>}
-              {plugin.links.builtbybit && <a href={plugin.links.builtbybit} target="_blank" class="dl-btn"><i class="bi bi-download"></i>BuiltByBit</a>}
+              {plugin.downloadLinks.map((dl) => (
+                <a href={dl.href} target="_blank" class="dl-btn"><i class="bi bi-download"></i>{dl.label}</a>
+              ))}
             </div>
             <a href={`/${plugin.id}/intro/introduction/`} class="plugin-doc-link">Docs <i class="bi bi-arrow-right"></i></a>
           </div>
@@ -295,24 +300,58 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </section>
 
-<!-- COMMUNITY -->
+<!-- PROMO BANNER — configurado en src/data/promo.js -->
+{promo.enabled && (
+  <section class="promo-section">
+    <div class="promo-banner">
+      {promo.banner && <div class="promo-bg" style={`background-image:url('${promo.banner}');`}></div>}
+      <div class="promo-gradient" id="promoBg"></div>
+      <div class="promo-inner">
+        <div class="promo-left">
+          {promo.logo && (
+            <div class="promo-logo"><img src={promo.logo} alt={promo.title} /></div>
+          )}
+          <div class="promo-text">
+            <div class="promo-title">{promo.title}</div>
+            <div class="promo-desc">{promo.description}</div>
+          </div>
+        </div>
+        <div class="promo-right">
+          {promo.price && (
+            <div class="promo-price-block">
+              {promo.originalPrice && <div class="promo-original">{promo.originalPrice}</div>}
+              {promo.discount && <div class="promo-discount">{promo.discount}</div>}
+              <div class="promo-price">{promo.price}</div>
+            </div>
+          )}
+          <div class="promo-buttons">
+            {promo.buttons.map((btn) => (
+              btn.primary
+                ? <a href={btn.href} target="_blank" class="promo-btn-primary"><i class="bi bi-bag-fill"></i>{btn.label}</a>
+                : <a href={btn.href} class="promo-btn-ghost"><i class="bi bi-book"></i>{btn.label}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- COMMUNITY — configurado en src/data/community.js -->
 <section class="section" id="community">
   <div class="section-label">Find us</div>
   <h2 class="section-title">Community & resources</h2>
   <p class="section-sub">Get support, report bugs and follow our updates across platforms.</p>
   <div class="social-grid">
-    <a href="https://discord.blakube.com/" target="_blank" class="social-btn"><i class="bi bi-discord"></i>Discord</a>
-    <a href="https://github.com/Blakube/" target="_blank" class="social-btn"><i class="bi bi-github"></i>GitHub</a>
-    <a href="https://x.com/blakubedesign" target="_blank" class="social-btn"><i class="bi bi-twitter-x"></i>Twitter / X</a>
-    <a href="https://www.instagram.com/blakubedesign" target="_blank" class="social-btn"><i class="bi bi-instagram"></i>Instagram</a>
-    <a href="https://www.behance.net/blakube" target="_blank" class="social-btn"><i class="bi bi-behance"></i>Behance</a>
-    <a href="https://modrinth.com/organization/blakube" target="_blank" class="social-btn"><i class="bi bi-box-seam"></i>Modrinth</a>
-    <a href="https://builtbybit.com/members/blakube.364216/" target="_blank" class="social-btn"><i class="bi bi-shop"></i>BuiltByBit</a>
-    <button class="social-btn" onclick="copyDiscord()"><i class="bi bi-clipboard"></i>Copy Discord<span class="copy-ok" id="cf">Copied!</span></button>
+    {community.map((item) => (
+      item.copyDiscord
+        ? <button class="social-btn" onclick={`copyText('${item.discordUser}','cf-${item.discordUser}')`}><i class={`bi ${item.icon}`}></i>{item.label}<span class="copy-ok" id={`cf-${item.discordUser}`}>Copied!</span></button>
+        : <a href={item.href} target={item.external ? "_blank" : "_self"} class="social-btn"><i class={`bi ${item.icon}`}></i>{item.label}</a>
+    ))}
   </div>
 </section>
 
-<!-- SERVERS CAROUSEL -->
+<!-- SERVERS CAROUSEL — configurado en src/data/servers.js -->
 <section class="section">
   <div class="section-label">Trusted by</div>
   <h2 class="section-title">Servers using our plugins</h2>
@@ -322,15 +361,13 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
     <div class="carousel-fade-r"></div>
     <div class="carousel-track">
       {serversLoop.map((server) => (
-        <div class="carousel-item">
-          <img src={server.logo} alt={server.name} title={server.name} />
-        </div>
+        <div class="carousel-item"><img src={server.logo} alt={server.name} title={server.name} /></div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
+<!-- TEAM — configurado en src/data/team.js -->
 <section class="section" id="team">
   <div class="section-label">The team</div>
   <h2 class="section-title">Who builds Blakube</h2>
@@ -341,7 +378,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         <div class="team-banner" style={`background-image:url('${member.banner}');background:${member.bannerGradient};background-size:cover;background-position:center;`}></div>
         <div class="avatar-wrap">
           <div class="avatar" style={`background:${member.avatarGradient};`} data-bg-light={member.avatarBgLight} data-bg-dark={member.avatarBgDark}>
-            <img src={member.avatar} alt={member.name} class="avatar-img" onload="this.style.opacity=1" onerror="this.style.display='none'" style="opacity:0;transition:opacity .3s;" />
+            <img src={member.avatar} alt={member.name} class="avatar-img" />
             <span class="avatar-fallback">{member.avatarFallback}</span>
           </div>
         </div>
@@ -349,10 +386,10 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
           <div class="member-name">{member.name}</div>
           <div class="member-role" style={`background:${member.roleColor.bg};color:${member.roleColor.text};border:1px solid ${member.roleColor.border};`}>{member.role}</div>
           <div class="member-icons">
-            {member.links.twitter && <a href={member.links.twitter} target="_blank" class="icon-link" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>}
-            {member.links.github && <a href={member.links.github} target="_blank" class="icon-link" title="GitHub"><i class="bi bi-github"></i></a>}
-            {member.links.behance && <a href={member.links.behance} target="_blank" class="icon-link" title="Behance"><i class="bi bi-behance"></i></a>}
-            {member.links.discord && <button class="icon-link" onclick={`copyUser(this,'${member.links.discord}')`} title="Copy Discord"><i class="bi bi-discord"></i></button>}
+            {member.links.twitter  && <a href={member.links.twitter}  target="_blank" class="icon-link" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>}
+            {member.links.github   && <a href={member.links.github}   target="_blank" class="icon-link" title="GitHub"><i class="bi bi-github"></i></a>}
+            {member.links.behance  && <a href={member.links.behance}  target="_blank" class="icon-link" title="Behance"><i class="bi bi-behance"></i></a>}
+            {member.links.discord  && <button class="icon-link" onclick={`copyText('${member.links.discord}','cf-m-${member.name}')`} title="Copy Discord"><i class="bi bi-discord"></i></button>}
           </div>
         </div>
       </div>
@@ -362,7 +399,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
 
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="footer-inner">
@@ -370,13 +406,12 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         <div class="footer-logo">BLAKUBE DESIGN</div>
         <div class="footer-tagline">Building high-performance Minecraft plugins with passion. Every line of code, crafted for your server.</div>
         <div class="footer-social">
-          <a href="https://github.com/Blakube/" target="_blank" class="nav-icon" title="GitHub"><i class="bi bi-github"></i></a>
-          <a href="https://discord.blakube.com/" target="_blank" class="nav-icon" title="Discord"><i class="bi bi-discord"></i></a>
-          <a href="https://x.com/blakubedesign" target="_blank" class="nav-icon" title="Twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="https://www.instagram.com/blakubedesign" target="_blank" class="nav-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.behance.net/blakube" target="_blank" class="nav-icon" title="Behance"><i class="bi bi-behance"></i></a>
+          {community.filter(c => !c.copyDiscord).slice(0,5).map(c => (
+            <a href={c.href} target="_blank" class="nav-icon" title={c.label}><i class={`bi ${c.icon}`}></i></a>
+          ))}
         </div>
       </div>
+
       <div class="footer-col">
         <h4>Plugins</h4>
         <ul>
@@ -384,32 +419,24 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
             <li>
               <a href={`/${plugin.id}/intro/introduction/`}>
                 {plugin.name}
-                {plugin.featured && <span style="margin-left:6px;font-size:.6rem;background:var(--blue);color:#fff;padding:1px 6px;border-radius:100px;font-weight:700;vertical-align:middle;">{plugin.featuredLabel}</span>}
-                {plugin.discount && <span style="margin-left:6px;font-size:.6rem;background:#ef4444;color:#fff;padding:1px 6px;border-radius:100px;font-weight:700;vertical-align:middle;">{plugin.discount} OFF</span>}
+                {plugin.featured && <span class="footer-badge">{plugin.featuredLabel}</span>}
+                {plugin.discount && <span class="footer-badge sale">{plugin.discount} OFF</span>}
               </a>
             </li>
           ))}
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Documentation</h4>
-        <ul>
-          <li><a href={`/${plugins[0]?.id}/intro/introduction/`}>Getting started</a></li>
-          <li><a href={`/${plugins[0]?.id}/intro/installation/`}>Installation</a></li>
-          <li><a href={`/${plugins[0]?.id}/config/how-to/`}>Configuration</a></li>
-          <li><a href={`/${plugins[0]?.id}/api/getting-started/`}>API</a></li>
-        </ul>
-      </div>
+
       <div class="footer-col">
         <h4>Community</h4>
         <ul>
-          <li><a href="https://discord.blakube.com/" target="_blank">Discord</a></li>
-          <li><a href="https://github.com/Blakube/" target="_blank">GitHub</a></li>
-          <li><a href="https://modrinth.com/organization/blakube" target="_blank">Modrinth</a></li>
-          <li><a href="https://builtbybit.com/members/blakube.364216/" target="_blank">BuiltByBit</a></li>
+          {community.filter(c => !c.copyDiscord).map(c => (
+            <li><a href={c.href} target={c.external?"_blank":"_self"}><i class={`bi ${c.icon}`}></i>{c.label}</a></li>
+          ))}
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>Blakube Design</span>. All rights reserved.</div>
       <div class="footer-legal">
@@ -420,63 +447,48 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </footer>
 
-<!-- SCROLL TO TOP -->
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
   <i class="bi bi-chevron-up"></i>
 </button>
 
-<script is:inline>
+<script is:inline define:vars={{ promoGradientDark: promo.gradientDark, promoGradientLight: promo.gradientLight }}>
 // THEME
 function getStoredTheme(){return localStorage.getItem('bk-theme')||'auto';}
 function applyTheme(t){
   const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
   const resolved=t==='auto'?(dark?'dark':'light'):t;
   document.documentElement.setAttribute('data-theme',resolved);
-  ['light','auto','dark'].forEach(id=>{
-    document.getElementById('btn-'+id)?.classList.toggle('active',id===t);
-  });
-  // avatar bg by theme
+  ['light','auto','dark'].forEach(id=>document.getElementById('btn-'+id)?.classList.toggle('active',id===t));
+  // promo gradient
+  const pg=document.getElementById('promoBg');
+  if(pg) pg.style.background=resolved==='dark'?promoGradientDark:promoGradientLight;
+  // avatar bg
   document.querySelectorAll('.avatar[data-bg-light]').forEach(av=>{
-    av.style.background = resolved==='dark' ? av.dataset.bgDark : av.dataset.bgLight;
+    if(!av.querySelector('.avatar-img.loaded'))
+      av.style.background=resolved==='dark'?av.dataset.bgDark:av.dataset.bgLight;
   });
 }
 function setTheme(t){localStorage.setItem('bk-theme',t);applyTheme(t);}
 applyTheme(getStoredTheme());
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{
-  if(getStoredTheme()==='auto') applyTheme('auto');
-});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(getStoredTheme()==='auto')applyTheme('auto');});
 
-// AVATAR — hide fallback when image loads
+// AVATARS
 document.querySelectorAll('.avatar-img').forEach(img=>{
-  if(img.complete && img.naturalWidth>0){
-    img.style.opacity='1';
-    img.closest('.avatar')?.querySelector('.avatar-fallback')?.style.setProperty('display','none');
-  }
-  img.addEventListener('load',()=>{
-    img.style.opacity='1';
-    img.closest('.avatar')?.querySelector('.avatar-fallback')?.style.setProperty('display','none');
-  });
-  img.addEventListener('error',()=>{ img.style.display='none'; });
+  const onLoad=()=>{img.classList.add('loaded');};
+  const onErr=()=>{img.style.display='none';};
+  if(img.complete&&img.naturalWidth>0){onLoad();}
+  else{img.addEventListener('load',onLoad);img.addEventListener('error',onErr);}
 });
 
 // SCROLL TO TOP
 const scrollBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{
-  scrollBtn?.classList.toggle('visible',window.scrollY>400);
-});
+window.addEventListener('scroll',()=>scrollBtn?.classList.toggle('visible',window.scrollY>400));
 
 // COPY
-function copyDiscord(){
-  navigator.clipboard.writeText('blakubedesign').then(()=>{
-    const el=document.getElementById('cf');
-    el.classList.add('show');
-    setTimeout(()=>el.classList.remove('show'),2000);
-  });
-}
-function copyUser(btn,user){
-  navigator.clipboard.writeText(user).then(()=>{
-    btn.style.color='var(--accent)';btn.style.borderColor='var(--accent)';
-    setTimeout(()=>{btn.style.color='';btn.style.borderColor='';},1500);
+function copyText(text,feedbackId){
+  navigator.clipboard.writeText(text).then(()=>{
+    const el=document.getElementById(feedbackId);
+    if(el){el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
   });
 }
 </script>
