@@ -11,12 +11,13 @@ const serversLoop = [...servers, ...servers];
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blakube Design — Plugin Documentation</title>
+<title>Blakube Docs</title>
 <meta name="description" content="High-performance Minecraft plugins built for Paper servers.">
 <link rel="icon" href="/brand/BLAKUBE_ICON.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <style>
+/* ... (Tus estilos CSS se mantienen exactamente igual) ... */
 :root{
   --blue:#2B7FFF;--blue-dim:#1a5fd4;--blue-subtle:rgba(43,127,255,0.08);
   --accent:#00d4ff;--font:'Poppins',sans-serif;
@@ -44,14 +45,10 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 a,button,[role=button],.plugin-card,.team-card,.carousel-item{cursor:pointer;}
 img{cursor:default;}
 .wrap{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}
-
-/* THEME TOGGLE */
 .theme-toggle{display:flex;align-items:center;gap:2px;background:var(--surface2);border:1px solid var(--border-dim);border-radius:var(--radius-sm);padding:3px;}
 .theme-btn{width:28px;height:28px;border-radius:6px;border:none;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .15s;font-family:var(--font);}
 .theme-btn.active{background:var(--blue);color:#fff;}
 .theme-btn:hover:not(.active){background:var(--border-dim);color:var(--text);}
-
-/* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-dim);padding:.85rem 0;transition:background .3s;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .nav-logo{text-decoration:none;display:flex;align-items:center;}
@@ -62,8 +59,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .nav-right{display:flex;align-items:center;gap:.6rem;}
 .nav-icon{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border-dim);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:all .2s;font-size:16px;}
 .nav-icon:hover{border-color:var(--border);color:var(--blue);}
-
-/* HERO */
 .hero{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:5rem 0;}
 .hero-bg{position:absolute;inset:0;z-index:0;background:url('/brand/hero-bg.jpg') center/cover no-repeat;filter:brightness(.25);}
 [data-theme="light"] .hero-bg{filter:brightness(.35);}
@@ -83,14 +78,10 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 [data-theme="light"] .btn-ghost{background:var(--surface2);color:var(--text);border-color:var(--border-dim);}
 .btn-ghost:hover{background:rgba(255,255,255,.18);}
 [data-theme="light"] .btn-ghost:hover{background:var(--border-dim);}
-
-/* SECTION */
 .section{padding:4rem 0;}
 .section-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:.6rem;}
 .section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--text);margin-bottom:.4rem;letter-spacing:-.3px;}
 .section-sub{color:var(--muted);font-size:.9rem;margin-bottom:2.5rem;max-width:480px;line-height:1.7;}
-
-/* PROMO BANNER */
 .promo-section{padding:2.5rem 0;}
 .promo-banner{border-radius:var(--radius-card);overflow:hidden;position:relative;border:1px solid var(--border);box-shadow:var(--card-shadow);}
 .promo-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;}
@@ -112,8 +103,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .promo-btn-primary:hover{background:#e8ecf5;transform:translateY(-1px);}
 .promo-btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.25rem;border-radius:var(--radius-sm);background:rgba(255,255,255,.12);color:#fff;font-weight:600;font-size:.82rem;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,.2);font-family:var(--font);}
 .promo-btn-ghost:hover{background:rgba(255,255,255,.2);}
-
-/* PLUGIN CARDS */
 .plugin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
 .plugin-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius-card);overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column;box-shadow:var(--card-shadow);position:relative;}
 .plugin-card:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:var(--card-shadow-hover);}
@@ -141,15 +130,11 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .dl-btn:hover{border-color:var(--border);color:var(--blue);}
 .plugin-doc-link{font-size:.75rem;font-weight:600;color:var(--blue);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .2s;}
 .plugin-doc-link:hover{color:var(--accent);}
-
-/* SOCIAL */
 .social-grid{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem;}
 .social-btn{display:inline-flex;align-items:center;gap:8px;padding:.6rem 1.2rem;border-radius:var(--radius-md);font-size:.82rem;font-weight:500;text-decoration:none;border:1px solid var(--border-dim);background:var(--surface);color:var(--text);transition:all .2s;cursor:pointer;font-family:var(--font);box-shadow:var(--card-shadow);}
 .social-btn:hover{border-color:var(--border);color:var(--blue);}
 .copy-ok{font-size:.72rem;color:var(--accent);opacity:0;transition:opacity .3s;margin-left:2px;}
 .copy-ok.show{opacity:1;}
-
-/* CAROUSEL */
 .carousel-wrap{overflow:hidden;position:relative;padding:.5rem 0;}
 .carousel-track{display:flex;gap:1.25rem;align-items:center;animation:scroll 30s linear infinite;width:max-content;}
 .carousel-wrap:hover .carousel-track{animation-play-state:paused;}
@@ -160,8 +145,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .carousel-fade-l,.carousel-fade-r{position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;}
 .carousel-fade-l{left:0;background:linear-gradient(to right,var(--bg),transparent);}
 .carousel-fade-r{right:0;background:linear-gradient(to left,var(--bg),transparent);}
-
-/* TEAM */
 .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem;}
 .team-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius-card);overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:var(--card-shadow);}
 .team-card:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:var(--card-shadow-hover);}
@@ -178,8 +161,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .member-icons{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;}
 .icon-link{width:30px;height:30px;border-radius:var(--radius-sm);border:1px solid var(--border-dim);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:all .2s;cursor:pointer;font-family:var(--font);font-size:14px;}
 .icon-link:hover{border-color:var(--border);color:var(--blue);}
-
-/* FOOTER */
 footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2rem;}
 .footer-inner{display:grid;grid-template-columns:1.5fr repeat(2,1fr);gap:2rem;margin-bottom:2.5rem;}
 .footer-brand{display:flex;flex-direction:column;gap:.75rem;}
@@ -198,13 +179,9 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
 .footer-legal{display:flex;gap:1.5rem;}
 .footer-legal a{font-size:.75rem;color:var(--muted);text-decoration:none;transition:color .2s;cursor:pointer;}
 .footer-legal a:hover{color:var(--text);}
-
-/* SCROLL TO TOP */
 .scroll-top{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;border:none;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;z-index:99;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(43,127,255,.35);}
 .scroll-top.visible{opacity:1;transform:translateY(0);}
 .scroll-top:hover{background:var(--blue-dim);}
-
-/* RESPONSIVE */
 @media(max-width:768px){
   .nav-links{display:none;}
   .footer-inner{grid-template-columns:1fr 1fr;}
@@ -262,7 +239,44 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
 
 <div class="wrap">
 
-<!-- PLUGINS -->
+<!-- 1. PROMO BANNER (Movido arriba de Plugins) -->
+{promo.enabled && (
+  <section class="promo-section">
+    <div class="promo-banner">
+      {promo.banner && <div class="promo-bg" style={`background-image:url('${promo.banner}');`}></div>}
+      <div class="promo-gradient" id="promoBg"></div>
+      <div class="promo-inner">
+        <div class="promo-left">
+          {promo.logo && (
+            <div class="promo-logo"><img src={promo.logo} alt={promo.title} /></div>
+          )}
+          <div class="promo-text">
+            <div class="promo-title">{promo.title}</div>
+            <div class="promo-desc">{promo.description}</div>
+          </div>
+        </div>
+        <div class="promo-right">
+          {promo.price && (
+            <div class="promo-price-block">
+              {promo.originalPrice && <div class="promo-original">{promo.originalPrice}</div>}
+              {promo.discount && <div class="promo-discount">{promo.discount}</div>}
+              <div class="promo-price">{promo.price}</div>
+            </div>
+          )}
+          <div class="promo-buttons">
+            {promo.buttons.map((btn) => (
+              btn.primary
+                ? <a href={btn.href} target="_blank" class="promo-btn-primary"><i class="bi bi-bag-fill"></i>{btn.label}</a>
+                : <a href={btn.href} class="promo-btn-ghost"><i class="bi bi-book"></i>{btn.label}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- 2. PLUGINS -->
 <section class="section" id="plugins">
   <div class="section-label">Our plugins</div>
   <h2 class="section-title">Built for performance</h2>
@@ -300,44 +314,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </section>
 
-<!-- PROMO BANNER — configurado en src/data/promo.js -->
-{promo.enabled && (
-  <section class="promo-section">
-    <div class="promo-banner">
-      {promo.banner && <div class="promo-bg" style={`background-image:url('${promo.banner}');`}></div>}
-      <div class="promo-gradient" id="promoBg"></div>
-      <div class="promo-inner">
-        <div class="promo-left">
-          {promo.logo && (
-            <div class="promo-logo"><img src={promo.logo} alt={promo.title} /></div>
-          )}
-          <div class="promo-text">
-            <div class="promo-title">{promo.title}</div>
-            <div class="promo-desc">{promo.description}</div>
-          </div>
-        </div>
-        <div class="promo-right">
-          {promo.price && (
-            <div class="promo-price-block">
-              {promo.originalPrice && <div class="promo-original">{promo.originalPrice}</div>}
-              {promo.discount && <div class="promo-discount">{promo.discount}</div>}
-              <div class="promo-price">{promo.price}</div>
-            </div>
-          )}
-          <div class="promo-buttons">
-            {promo.buttons.map((btn) => (
-              btn.primary
-                ? <a href={btn.href} target="_blank" class="promo-btn-primary"><i class="bi bi-bag-fill"></i>{btn.label}</a>
-                : <a href={btn.href} class="promo-btn-ghost"><i class="bi bi-book"></i>{btn.label}</a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-)}
-
-<!-- COMMUNITY — configurado en src/data/community.js -->
+<!-- ... (Community, Servers y Team se mantienen igual) ... -->
 <section class="section" id="community">
   <div class="section-label">Find us</div>
   <h2 class="section-title">Community & resources</h2>
@@ -351,7 +328,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </section>
 
-<!-- SERVERS CAROUSEL — configurado en src/data/servers.js -->
 <section class="section">
   <div class="section-label">Trusted by</div>
   <h2 class="section-title">Servers using our plugins</h2>
@@ -367,7 +343,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   </div>
 </section>
 
-<!-- TEAM — configurado en src/data/team.js -->
 <section class="section" id="team">
   <div class="section-label">The team</div>
   <h2 class="section-title">Who builds Blakube</h2>
@@ -411,7 +386,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
           ))}
         </div>
       </div>
-
       <div class="footer-col">
         <h4>Plugins</h4>
         <ul>
@@ -426,7 +400,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
           ))}
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Community</h4>
         <ul>
@@ -436,7 +409,6 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>Blakube Design</span>. All rights reserved.</div>
       <div class="footer-legal">
@@ -451,46 +423,54 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
   <i class="bi bi-chevron-up"></i>
 </button>
 
-<script is:inline define:vars={{ promoGradientDark: promo.gradientDark, promoGradientLight: promo.gradientLight }}>
-// THEME
-function getStoredTheme(){return localStorage.getItem('bk-theme')||'auto';}
-function applyTheme(t){
-  const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const resolved=t==='auto'?(dark?'dark':'light'):t;
-  document.documentElement.setAttribute('data-theme',resolved);
-  ['light','auto','dark'].forEach(id=>document.getElementById('btn-'+id)?.classList.toggle('active',id===t));
-  // promo gradient
-  const pg=document.getElementById('promoBg');
-  if(pg) pg.style.background=resolved==='dark'?promoGradientDark:promoGradientLight;
-  // avatar bg
-  document.querySelectorAll('.avatar[data-bg-light]').forEach(av=>{
-    if(!av.querySelector('.avatar-img.loaded'))
-      av.style.background=resolved==='dark'?av.dataset.bgDark:av.dataset.bgLight;
+<script is:inline>
+  // --- 1. LÓGICA DE TEMA (CORREGIDA) ---
+  window.applyTheme = function(t) {
+    const isDarkSystem = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const themeToApply = t === 'auto' ? (isDarkSystem ? 'dark' : 'light') : t;
+    document.documentElement.setAttribute('data-theme', themeToApply);
+    
+    ['light', 'auto', 'dark'].forEach(id => {
+      const btn = document.getElementById('btn-' + id);
+      if (btn) btn.classList.toggle('active', id === t);
+    });
+
+    const pg = document.getElementById('promoBg');
+    if (pg) pg.style.opacity = themeToApply === 'dark' ? '0.8' : '0.4';
+  };
+
+  window.setTheme = function(t) {
+    localStorage.setItem('bk-theme', t);
+    window.applyTheme(t);
+  };
+
+  // Inicialización rápida
+  window.applyTheme(localStorage.getItem('bk-theme') || 'auto');
+
+  // --- 2. AVATARES ---
+  document.querySelectorAll('.avatar-img').forEach(img => {
+    const onLoad = () => img.classList.add('loaded');
+    if (img.complete) onLoad();
+    else img.addEventListener('load', onLoad);
   });
-}
-function setTheme(t){localStorage.setItem('bk-theme',t);applyTheme(t);}
-applyTheme(getStoredTheme());
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(getStoredTheme()==='auto')applyTheme('auto');});
 
-// AVATARS
-document.querySelectorAll('.avatar-img').forEach(img=>{
-  const onLoad=()=>{img.classList.add('loaded');};
-  const onErr=()=>{img.style.display='none';};
-  if(img.complete&&img.naturalWidth>0){onLoad();}
-  else{img.addEventListener('load',onLoad);img.addEventListener('error',onErr);}
-});
+  // --- 3. SCROLL TO TOP ---
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn?.classList.toggle('visible', window.scrollY > 400));
 
-// SCROLL TO TOP
-const scrollBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>scrollBtn?.classList.toggle('visible',window.scrollY>400));
+  // --- 4. COPIAR TEXTO ---
+  window.copyText = function(text, feedbackId) {
+    navigator.clipboard.writeText(text).then(() => {
+      const el = document.getElementById(feedbackId);
+      if (el) {
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 2000);
+      }
+    });
+  };
 
-// COPY
-function copyText(text,feedbackId){
-  navigator.clipboard.writeText(text).then(()=>{
-    const el=document.getElementById(feedbackId);
-    if(el){el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
-  });
-}
+  // Soporte para navegación de Astro
+  document.addEventListener('astro:after-swap', () => window.applyTheme(localStorage.getItem('bk-theme') || 'auto'));
 </script>
 </body>
 </html>
