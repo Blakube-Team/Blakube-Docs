@@ -24,7 +24,22 @@ export default defineConfig({
                         { label: 'Addons', slug: 'bk-tops/addons/notify' },
                         { label: 'API', slug: 'bk-tops/api/getting-started' },
                     ],
-                }
+                },
+                {
+                    label: 'BK-Gradients',
+                    items: [
+                        { label: 'Introduction', slug: 'bk-gradients/intro/introduction' },
+                        { label: 'Installation', slug: 'bk-gradients/intro/installation' },
+                        { label: 'Modules', slug: 'bk-gradients/modules/modules' },
+                        { label: 'Commands', slug: 'bk-gradients/config/commands' },
+                        { label: 'Permissions', slug: 'bk-gradients/config/permissions' },
+                        { label: 'config.yml', slug: 'bk-gradients/config/configuration' },
+                        { label: 'tags.yml', slug: 'bk-gradients/config/tags' },
+                        { label: 'GUI Menus', slug: 'bk-gradients/gui/menus' },
+                        { label: 'PlaceholderAPI & Database', slug: 'bk-gradients/reference/placeholders-database' },
+                        { label: 'MiniMessage & FAQ', slug: 'bk-gradients/reference/minimessage-faq' },
+                    ],
+                },
 			],
 		}),
 	],
