@@ -40,7 +40,7 @@ export const team = [
     roleColor: { bg: "rgba(43,127,255,0.12)", text: "#2B7FFF", border: "rgba(43,127,255,0.25)" },
     bannerGradient: "linear-gradient(135deg,#0d1a3a,#1a3a6a)",
     avatarGradient: "linear-gradient(135deg,#2B7FFF,#00d4ff)",
-    links: { twitter: "https://x.com/rtxjean", github: "https://github.com/rtxjean", discord: "rtxjean" },
+    links: { twitter: "https://x.com/hhitt", github: "https://github.com/hhitt", discord: "hhitt" },
   },
   {
     name: "Kaizen",

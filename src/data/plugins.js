@@ -14,8 +14,8 @@ export const plugins = [
     originalPrice: null,
     featured: false,
     featuredLabel: "Featured",
-    logo: "/brand/plugin/bk-tops-logo.png",
-    banner: "/brand/plugin/bk-tops-banner.jpg",
+    logo: "/brand/plugins/bk-tops-logo.png",
+    banner: "/brand/plugins/bk-tops-banner.jpg",
     tags: [],
     // tags: ["Leaderboards", "Teams", "MySQL", "PlaceholderAPI", "Paper 1.21+"],
 
@@ -42,6 +42,38 @@ export const plugins = [
 
     downloadLinks: [
       { label: "BuiltByBit", href: "https://builtbybit.com/resources/bk-gradients-tags-gradient-system.88792/" },
+    ],
+  },
+  {
+    id: "bk-claims",
+    name: "BK-Claims",
+    description: "Ultra-high performance land protection system. Zero-lag particle borders, intuitive GUI management, and deep permission control for modern servers.",
+    price: "$9.99",
+    discount: null, // Puedes poner "20%" si decides ponerlo en oferta
+    originalPrice: null,
+    featured: true, // Lo he puesto como true para que destaque como novedad
+    featuredLabel: "New Release",
+    logo: "/brand/plugins/bk-claims-logo.png",
+    banner: "/brand/plugins/bk-claims-banner.png",
+    tags: ["Protection", "Optimization", "GUI"],
+    downloadLinks: [
+      { label: "BuiltByBit", href: "https://builtbybit.com/resources/bk-claims.98662/" },
+    ],
+  },
+  {
+    id: "bk-tops-notify",
+    name: "BK-Tops Notify Addon",
+    description: "Dynamic notification system for BK-Tops. Keep your players engaged with real-time ranking updates, personal milestones, and leaderboard change alerts.",
+    price: "$2.50",
+    discount: null,
+    originalPrice: null,
+    featured: false,
+    featuredLabel: "Addon",
+    logo: "/brand/plugins/bk-tops-notify-logo.png",
+    banner: "/brand/plugins/bk-tops-notify-banner.png",
+    tags: ["Addon", "Notifications", "Engagement"],
+    downloadLinks: [
+      { label: "BuiltByBit", href: "https://builtbybit.com/resources/bk-tops-notify-addon.97443/" },
     ],
   },
 

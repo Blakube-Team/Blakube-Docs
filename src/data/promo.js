@@ -8,7 +8,7 @@ export const promo = {
   enabled: true,                          // false = oculta el banner completamente
 
   // Contenido
-  logo:        "/brand/promo-logo.png",   // logo a la izquierda (opcional, null si no quieres)
+  logo:        "/brand/plugins/bk-gradients-logo.png",   // logo a la izquierda (opcional, null si no quieres)
   title:       "BK-Gradients",
   description: "The ultimate cosmetics plugin for your server. Prefixes, nicks, suffixes & tags with full HEX gradient support.",
 
@@ -20,7 +20,7 @@ export const promo = {
 
   // Precio (opcional, null para ocultar)
   price:         "$7.99",
-  originalPrice: "null",               // null si no hay descuento
+  originalPrice: "new",               // null si no hay descuento
   discount:      "null",             // null si no hay descuento
 
   // Imagen de fondo del banner (opcional)
@@ -28,5 +28,5 @@ export const promo = {
 
   // Colores del banner
   gradientDark:  "linear-gradient(135deg, #0a0f1e 0%, #0d1a3a 50%, #0a0f1e 100%)",
-  gradientLight: "linear-gradient(135deg, #e8f0ff 0%, #c8d8ff 50%, #e8f0ff 100%)",
+  gradientLight: "linear-gradient(135deg, #f0f7ff 0%, #dbeafe 50%, #f0f7ff 100%)",
 };
