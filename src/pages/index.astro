@@ -208,7 +208,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
     <a href="/" class="nav-logo"><img src="/brand/BLAKUBE_ICON.png" alt="Blakube"></a>
     <ul class="nav-links">
       <li><a href="#plugins">Plugins</a></li>
-      <li><a href="/bk-tops/intro/introduction/">Docs</a></li>
+      <li><a href="/bk-tops/introduction/">Docs</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#community">Community</a></li>
     </ul>
@@ -306,7 +306,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
                 <a href={dl.href} target="_blank" class="dl-btn"><i class="bi bi-download"></i>{dl.label}</a>
               ))}
             </div>
-            <a href={`/${plugin.id}/intro/introduction/`} class="plugin-doc-link">Docs <i class="bi bi-arrow-right"></i></a>
+            <a href={`/${plugin.id}/introduction/`} class="plugin-doc-link">Docs <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -391,7 +391,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         <ul>
           {plugins.map((plugin) => (
             <li>
-              <a href={`/${plugin.id}/intro/introduction/`}>
+              <a href={`/${plugin.id}/introduction/`}>
                 {plugin.name}
                 {plugin.featured && <span class="footer-badge">{plugin.featuredLabel}</span>}
                 {plugin.discount && <span class="footer-badge sale">{plugin.discount} OFF</span>}
