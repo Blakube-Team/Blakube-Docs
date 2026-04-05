@@ -6,7 +6,7 @@ export const team = [
   {
     name: "Rubenchoo",
     role: "Founder",
-    avatar: "/brand/team/avatar-rubencho.png",
+    avatar: "/brand/team/avatar-rubenchoo.png",
     avatarFallback: "RB",
     avatarBgLight: "#fff8e1",
     avatarBgDark: "#1a1200",
@@ -32,7 +32,7 @@ export const team = [
   {
     name: "Imhhitt",
     role: "Lead Developer",
-    avatar: "/brand/team/avatar-hhitt.jpg",
+    avatar: "/brand/team/avatar-hhitt.png",
     avatarFallback: "JN",
     avatarBgLight: "#e8f0ff",
     avatarBgDark: "#0d1a3a",
