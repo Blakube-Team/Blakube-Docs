@@ -5,7 +5,7 @@
 // ============================================================
 
 export const promo = {
-  enabled: true,                          // false = oculta el banner completamente
+  enabled: false,                          // false = oculta el banner completamente
 
   // Contenido
   logo:        "/brand/plugins/bk-gradients-logo.png",   // logo a la izquierda (opcional, null si no quieres)

@@ -15,7 +15,7 @@ export const plugins = [
     featured: false,
     featuredLabel: "Featured",
     logo: "/brand/plugins/bk-tops-logo.png",
-    banner: "/brand/plugins/bk-tops-banner.jpg",
+    banner: "/brand/plugins/bk-tops-banner.png",
     tags: [],
     // tags: ["Leaderboards", "Teams", "MySQL", "PlaceholderAPI", "Paper 1.21+"],
 
@@ -71,7 +71,7 @@ export const plugins = [
     featuredLabel: "Addon",
     logo: "/brand/plugins/bk-tops-notify-logo.png",
     banner: "/brand/plugins/bk-tops-notify-banner.png",
-    tags: ["Addon", "Notifications", "Engagement"],
+    tags: [],
     downloadLinks: [
       { label: "BuiltByBit", href: "https://builtbybit.com/resources/bk-tops-notify-addon.97443/" },
     ],
