@@ -12,7 +12,7 @@ export const community = [
   { label: "Modrinth",   icon: "bi-box-seam",  href: "https://modrinth.com/organization/blakube",       external: true  },
   { label: "BuiltByBit", icon: "bi-shop",      href: "https://builtbybit.com/members/blakube.364216/",  external: true  },
   // botón especial de copiar Discord — deja href vacío y pon copyDiscord: true
-  { label: "Copy Discord", icon: "bi-clipboard", href: "", copyDiscord: true, discordUser: "blakubedesign" },
+   // { label: "Copy Discord", icon: "bi-clipboard", href: "", copyDiscord: true, discordUser: "blakubedesign" },
 
   // ── Para añadir una red, copia este bloque: ──────────────
   // { label: "Nombre", icon: "bi-ICONO", href: "https://...", external: true },

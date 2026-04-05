@@ -14,17 +14,17 @@ export const promo = {
 
   // Botones (puedes añadir o quitar los que quieras)
   buttons: [
-    { label: "Buy Now",    href: "https://builtbybit.com/members/blakube.364216/", primary: true  },
+    { label: "Buy Now",    href: "https://builtbybit.com/resources/bk-gradients-tags-gradient-system.88792/", primary: true  },
     { label: "Learn More", href: "/bk-gradients/intro/introduction/",              primary: false },
   ],
 
   // Precio (opcional, null para ocultar)
   price:         "$7.99",
-  originalPrice: "$9.99",               // null si no hay descuento
-  discount:      "20% OFF",             // null si no hay descuento
+  originalPrice: "null",               // null si no hay descuento
+  discount:      "null",             // null si no hay descuento
 
   // Imagen de fondo del banner (opcional)
-  banner: "/brand/bk-gradients-banner.jpg",
+  banner: "/brand/plugins/bk-gradients-banner",
 
   // Colores del banner
   gradientDark:  "linear-gradient(135deg, #0a0f1e 0%, #0d1a3a 50%, #0a0f1e 100%)",

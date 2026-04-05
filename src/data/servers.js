@@ -7,27 +7,27 @@
 export const servers = [
   {
     name: "Nokbox",
-    logo: "/brand/servers/nokbox.png",      // imagen en public/brand/servers/
+    logo: "/brand/servers/nokbox-logo.png",      // imagen en public/brand/servers/
   },
   {
     name: "Saucerlandia",
-    logo: "/brand/servers/saucerlandia.png",
+    logo: "/brand/servers/saucerlandia-logo.png",
   },
   {
     name: "Hildairis",
-    logo: "/brand/servers/hildairis.png",
+    logo: "/brand/servers/hildairis-logo.png",
   },
   {
     name: "Astrominers",
-    logo: "/brand/servers/astrominers.png",
+    logo: "/brand/servers/astrominers-logo.png",
   },
   {
     name: "CanelaSMP",
-    logo: "/brand/servers/canelasmp.png",
+    logo: "/brand/servers/canelasmp-logo.png",
   },
   {
     name: "Hymine",
-    logo: "/brand/servers/hymine.png",
+    logo: "/brand/servers/hymine-logo.png",
   },
 
   // ── Para añadir un servidor, copia este bloque: ──────────
