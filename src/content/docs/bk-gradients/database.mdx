@@ -1,0 +1,62 @@
+---
+title: Database
+description: Database schema and setup for BK-Gradients.
+---
+
+# Database
+
+BK-Gradients stores all player data in SQL. Configure the database type in `config.yml`.
+
+---
+
+## Supported engines
+
+| Engine | When to use |
+|---|---|
+| **SQLite** | Default — single server, no extra setup |
+| **MySQL** | Multi-server networks sharing cosmetic data |
+
+---
+
+## Configuration
+
+```yaml
+database:
+  type: SQLITE   # or MYSQL
+
+  sqlite:
+    file: data.db
+
+  mysql:
+    host: localhost
+    port: 3306
+    database: bkgradients
+    username: root
+    password: ""
+    pool:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+```
+
+---
+
+## Tables
+
+| Table | Contents |
+|---|---|
+| `bkg_prefix` | Each player's prefix text, colors, styles and visibility |
+| `bkg_prefix_history` | Prefix history entries |
+| `bkg_nick` | Nick colors and styles |
+| `bkg_nick_history` | Nick history entries |
+| `bkg_suffix` | Suffix text, colors, styles and visibility |
+| `bkg_suffix_history` | Suffix history entries |
+| `bkg_tags` | Active tag ID, colors and visibility |
+| `bkg_tags_history` | Tag history entries |
+| `bkg_tags_favourites` | Favourite tag IDs per player |
+
+:::danger
+Do not manually edit database tables while the plugin is running. Always stop the server or use `/bkg reload` after direct database changes.
+:::

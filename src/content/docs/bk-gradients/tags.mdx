@@ -1,0 +1,114 @@
+---
+title: tags.yml
+description: Tag definitions, categories and color presets for BK-Gradients.
+---
+
+# tags.yml
+
+Located at `plugins/BKGradients/tags.yml`.
+Changes apply with `/bkg reload` — no restart required.
+
+---
+
+## Categories
+
+```yaml
+Categories:
+  default:
+    Name: '<white>Sʏᴍʙᴏʟs'
+    Description:
+      - 'Basic icon collection'
+      - 'and geometric shapes.'
+    Icon:
+      Material: PAPER
+      Custom_Model_Data: 9001
+    Priority: 0        # lower = shown first
+
+  premium:
+    Name: '<gradient:#FFD700:#FF8C00>Premium</gradient>'
+    Description:
+      - 'Exclusive VIP designs.'
+    Icon:
+      Material: PLAYER_HEAD
+      Base64: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6..."
+    Priority: 1
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `Material` | Bukkit material | Required. Use `PLAYER_HEAD` for skull textures |
+| `Base64` | Base64 string | Optional. Custom skull texture |
+| `Custom_Model_Data` | Integer | Optional. Resource pack model override |
+| `Priority` | Integer | Display order — lower value appears first |
+
+---
+
+## Tags
+
+```yaml
+Tags:
+  heart_solid:
+    Name: 'Hᴇᴀʀᴛ'          # display name in the GUI
+    Tag: '❤'                 # symbol shown in chat, tab, scoreboard
+    Colors: true             # true = player can colorize
+    Permission: false        # true = requires bkgradients.tags.heart_solid
+    Priority: 0
+    Category: default        # must match a key in Categories
+    Material: RED_DYE
+    Custom_Model_Data: 1001  # optional
+```
+
+### Tag with a custom skull icon
+
+```yaml
+Tags:
+  vip_crown:
+    Name: '<gold>Cᴏʀᴏɴᴀ'
+    Tag: '♛'
+    Colors: true
+    Permission: true
+    Priority: 0
+    Category: premium
+    Material: PLAYER_HEAD
+    Base64: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6..."
+```
+
+### Fixed-color tag (legacy `&` codes)
+
+```yaml
+Tags:
+  colombia:
+    Name: 'Cᴏʟᴏᴍʙɪᴀ'
+    Tag: '&eᴄ&9ᴏ&cʟ'
+    Colors: false            # color picker disabled
+    Permission: true
+    Category: countries
+    Material: GOLD_NUGGET
+```
+
+:::tip[Adding a new tag]
+Add your entry under `Tags:` in `tags.yml` with a unique ID, then run `/bkg reload`. No restart needed.
+:::
+
+---
+
+## Color presets
+
+Preset colors shown in the tag color picker for tags with `Colors: true`.
+
+```yaml
+Colors:
+  red:
+    Display_Name: 'Red'
+    Icon:
+      Material: RED_DYE
+    HEX: '#FF5555'
+
+  purple:
+    Display_Name: 'Purple'
+    Icon:
+      Material: PURPLE_DYE
+    HEX: '#A855F7'
+```
+
+Add or remove presets freely. Changes apply on `/bkg reload`.

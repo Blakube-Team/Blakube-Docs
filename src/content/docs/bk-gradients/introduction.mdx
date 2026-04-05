@@ -1,0 +1,81 @@
+---
+title: BK-Gradients
+description: Advanced Visual Identity & Cosmetics System for Paper 1.21+ servers.
+---
+
+import { Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+
+# BK-Gradients
+
+**Advanced Visual Identity & Cosmetics System** for Paper 1.21+ servers.
+
+BK-Gradients lets players build a fully custom visual identity — in chat, tab list, scoreboard, and beyond — through four independent modules driven entirely by YAML. No recompilation. Every menu, sound, and behavior editable live.
+
+![BK-Gradients banner](/brand/plugins/bk-gradients-banner.png)
+
+---
+
+## Modules at a glance
+
+<CardGrid>
+  <Card title="Prefix" icon="pencil">
+    Custom text **before** the player name, rendered as a two-color HEX gradient with text styles.
+  </Card>
+  <Card title="Nick" icon="seti:config">
+    Gradient color applied to the player's **display name** — the real username never changes.
+  </Card>
+  <Card title="Suffix" icon="pencil">
+    Custom text **after** the player name, same options as Prefix.
+  </Card>
+  <Card title="Tags" icon="star">
+    Decorative symbols — ❤ ★ ⚔ — with per-player HEX gradient colors and categories.
+  </Card>
+</CardGrid>
+
+---
+
+## Key features
+
+| Feature | Details |
+|---|---|
+| **100% YAML GUIs** | Menus, items, lore, actions, layouts — fully editable without recompiling |
+| **MiniMessage** | HEX colors, gradients, bold, italic, hover/click events everywhere |
+| **Per-player history** | Every cosmetic is saved; players can restore previous looks |
+| **PlaceholderAPI** | Legacy `%..%` and MiniMessage `<bkgradients:...>` placeholders |
+| **SQLite & MySQL** | Single-server or multi-server shared database |
+| **Cooldown & validation** | Length limits, character blacklist, cooldown per module |
+| **Permission-locked tags** | Specific tags require a permission node — perfect for rank perks |
+| **Live reload** | `/bkg reload` applies all changes instantly — no restart needed |
+
+---
+
+## Requirements
+
+:::caution[Paper only]
+BK-Gradients uses Paper's **Adventure API** and **AsyncChatEvent**. Both are unavailable on Spigot or Bukkit.
+:::
+
+| | Requirement |
+|---|---|
+| Server | **Paper 1.21** or newer |
+| Java | **17** or newer |
+| PlaceholderAPI | Optional — needed only for external placeholders |
+
+---
+
+## Quick navigation
+
+<CardGrid>
+  <Card title="Installation" icon="rocket">
+    [Get BK-Gradients running in 2 minutes →](/bk-gradients/installation)
+  </Card>
+  <Card title="Modules" icon="puzzle">
+    [Deep dive into Prefix, Nick, Suffix and Tags →](/bk-gradients/modules)
+  </Card>
+  <Card title="Commands" icon="terminal">
+    [Full command and permission reference →](/bk-gradients/commands)
+  </Card>
+  <Card title="config.yml" icon="setting">
+    [Configure database, modules, sounds and more →](/bk-gradients/configuration)
+  </Card>
+</CardGrid>

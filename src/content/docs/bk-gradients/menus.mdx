@@ -1,0 +1,134 @@
+---
+title: GUI Menus
+description: How to configure GUI menus in BK-Gradients.
+---
+
+# GUI Menus
+
+All menus live in `plugins/BKGradients/menus/`. Changes apply with `/bkg reload`.
+
+---
+
+## Item structure
+
+```yaml
+items:
+  my_item:
+    slot: 22                         # single slot
+    # slot: "0,8,36-44"             # range or comma-separated (as string)
+    # slots: [10, 11, 12]           # YAML list
+
+    material: DIAMOND
+    display_name: "<gradient:#A855F7:#EC4899>My Item</gradient>"
+    lore:
+      - "<!italic><gray>Line one"
+      - "<!italic><gray>Line two"
+
+    glow: true                       # enchantment glow without visible enchantment text
+    custom_model_data: 1001
+    amount: 1
+
+    base64: "eyJ..."                 # custom skull texture
+    player_name: "%player%"         # use the player's own skin
+
+    actions:
+      - "[close]"
+```
+
+### Slot reference — 54-slot inventory
+
+```
+ 0  1  2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15 16 17
+18 19 20 21 22 23 24 25 26
+27 28 29 30 31 32 33 34 35
+36 37 38 39 40 41 42 43 44
+45 46 47 48 49 50 51 52 53
+```
+
+---
+
+## Actions reference
+
+### General
+
+| Action | Description |
+|---|---|
+| `[close]` | Close the inventory and end the session |
+| `[close_hub]` | Close and open the main hub (`/bkg`) |
+| `[open_menu] <menuId>` | Open any plugin menu by file ID |
+| `[player] /command` | Execute a command as the player |
+
+### Nick module
+
+| Action | Description |
+|---|---|
+| `[player] /nick_internal set_color1` | Open chat input for start color |
+| `[player] /nick_internal set_color2` | Open chat input for end color |
+| `[player] /nick_internal save` | Save and apply nick changes |
+| `[player] /nick_internal toggle_bold` | Toggle bold style |
+| `[player] /nick_internal toggle_italic` | Toggle italic style |
+| `[player] /nick_internal toggle_underline` | Toggle underline style |
+| `[player] /nick_internal toggle_smallcaps` | Toggle small caps style |
+| `[player] /nick reset-colors` | Reset gradient to white |
+
+### Tags module
+
+| Action | Description |
+|---|---|
+| `[tags_back]` | Navigate back one screen |
+| `[tags_remove]` | Remove the active tag |
+| `[tags_open_category <catId>]` | Open tag list for a category |
+| `[tags_open_colours]` | Open color picker |
+| `[tags_open_favourites]` | Open favourites screen |
+| `[tags_hex_input]` | Start custom HEX chat input |
+| `[tags_set_color <#HEX>]` | Apply a specific HEX color |
+| `[tags_toggle_fav <tagId>]` | Toggle a tag as favourite |
+| `[tags_equip <tagId>]` | Equip a specific tag |
+| `[tags_page_next]` | Go to next page |
+| `[tags_page_prev]` | Go to previous page |
+
+---
+
+## Placeholders in menus
+
+### Available in all menus
+
+| Placeholder | Description |
+|---|---|
+| `%player%` | Player's username |
+
+### Prefix menus
+
+| Placeholder | Description |
+|---|---|
+| `%prefix_text%` | Current prefix text |
+| `%prefix_color1%` | Start color (HEX) |
+| `%prefix_color2%` | End color (HEX) |
+| `%prefix_preview%` | Fully rendered prefix |
+| `%prefix_color1_bar%` | Visual bar in the start color |
+| `%prefix_color2_bar%` | Visual bar in the end color |
+
+### Nick menus
+
+| Placeholder | Description |
+|---|---|
+| `%nick_color1%` | Current start color |
+| `%nick_color2%` | Current end color |
+| `%nick_preview%` | Fully rendered nick |
+| `%nick_color1_bar%` | Visual bar in start color |
+| `%nick_color2_bar%` | Visual bar in end color |
+
+### Tags menus
+
+| Placeholder | Description |
+|---|---|
+| `%tag_preview%` | Active tag with current colors |
+| `%tag_name%` | Active tag display name |
+| `%tag_id%` | Active tag ID |
+| `%page_current%` | Current page number |
+| `%page_total%` | Total pages |
+| `%category_name%` | Current category name |
+| `%favs_count%` | Number of saved favourites |
+| `%hex_color1%` | Current start color (HEX) |
+| `%hex_color2%` | Current end color (HEX) |

@@ -1,9 +1,14 @@
 ---
 title: config.yml
-description: Main configuration file reference for BK-Gradients.
+description: Main configuration reference for BK-Gradients.
 ---
 
-# Configuration — `config.yml`
+# config.yml
+
+The main configuration file. Located at `plugins/BKGradients/config.yml`.
+Apply changes with `/bkg reload` — no restart required.
+
+---
 
 ## `gui`
 
@@ -14,7 +19,7 @@ gui:
     disabled: "<gradient:#FF5555:#AA0000>✘ Disabled</gradient>"
 ```
 
-MiniMessage text displayed on style toggle buttons. Edit to match your server's language or style.
+MiniMessage text shown on style toggle buttons. Edit to match your language or style.
 
 ---
 
@@ -27,7 +32,7 @@ command-aliases:
   - gradients
 ```
 
-Additional aliases for `/bkgradients`. Changes take effect on reload — no restart required.
+Additional aliases for `/bkgradients`. Changes take effect on reload.
 
 ---
 
@@ -54,7 +59,9 @@ database:
       max-lifetime: 1800000
 ```
 
-Use `SQLITE` for single-server setups. Use `MYSQL` for networks where multiple servers share the same player data.
+:::tip[Multi-server setup]
+Use `MYSQL` and point all servers to the same database to share cosmetic data across your network.
+:::
 
 ---
 
@@ -78,8 +85,8 @@ modules:
         - "owner"
     cooldown:
       enabled: true
-      time: 300          # seconds between saves
-    history-size: 10     # history entries kept per player
+      time: 300        # seconds between saves
+    history-size: 10   # entries stored per player
 
   nick:
     enabled: true
@@ -95,14 +102,15 @@ modules:
   tags:
     enabled: true
     history-size: 10
-    max-favourites: 9    # maximum favourite tags per player
+    max-favourites: 9
 ```
 
-**Notes:**
-- Setting `enabled: false` disables a module entirely without deleting existing player data
-- `allowed-characters` is a Java regex. The default allows A–Z, a–z, 0–9, spaces, `_`, `-`, `[]`, `()`
-- The `bypass` permission (`bkgradients.prefix.bypass`) skips the blacklist and character regex, but does **not** bypass length limits
-- `history-size` controls how many past cosmetics are stored per player per module
+| Key | Description |
+|---|---|
+| `enabled` | Disables the module without deleting player data |
+| `allowed-characters` | Java regex — default allows A–Z, a–z, 0–9, spaces, `_`, `-`, `[]`, `()` |
+| `bypass` permission | Skips blacklist and regex — does **not** bypass length limits |
+| `history-size` | Past cosmetics stored per player per module |
 
 ---
 
@@ -119,7 +127,7 @@ sounds:
   cancel:  { enabled: true, name: UI_TOAST_OUT,          volume: 1.0, pitch: 1.0 }
 ```
 
-Each key maps to a specific UI action. Set `enabled: false` to silence any individual sound.
+Set `enabled: false` on any key to silence that specific UI action.
 
 ---
 
@@ -143,7 +151,7 @@ input:
 
 ---
 
-## `colors` — HEX Aliases
+## `colors` — HEX aliases
 
 ```yaml
 colors:
@@ -156,7 +164,6 @@ colors:
   violet:    "#EE82EE"
   amber:     "#FFBF00"
   emerald:   "#50C878"
-  # add your own aliases here...
 ```
 
-Players can type these names in chat instead of a full HEX code when responding to a color prompt.
+Players can type these names instead of a full HEX code during color prompts. Add as many custom aliases as needed.

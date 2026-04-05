@@ -1,0 +1,83 @@
+---
+title: Permissions
+description: All permission nodes for BK-Gradients.
+---
+
+# Permissions
+
+---
+
+## General
+
+| Permission | Description | Default |
+|---|---|---|
+| `bkgradients.*` | Grants **all** plugin permissions | `false` |
+| `bkgradients.use` | Open the main hub with `/bkg` | `true` |
+| `bkgradients.admin` | Admin commands: reload, reset, clear | `op` |
+
+---
+
+## Prefix
+
+| Permission | Description | Default |
+|---|---|---|
+| `bkgradients.prefix.*` | All prefix permissions | `false` |
+| `bkgradients.prefix.use` | Use the prefix module | `true` |
+| `bkgradients.prefix.bypass` | Skip blacklist and character restrictions | `false` |
+
+:::note[Bypass scope]
+`bkgradients.prefix.bypass` skips the character blacklist and regex validation — but it does **not** bypass length limits.
+:::
+
+---
+
+## Nick
+
+| Permission | Description | Default |
+|---|---|---|
+| `bkgradients.nick.*` | All nick permissions | `false` |
+| `bkgradients.nick.use` | Use the nick module | `true` |
+| `bkgradients.nick.bypass` | Skip content restrictions | `false` |
+
+---
+
+## Suffix
+
+| Permission | Description | Default |
+|---|---|---|
+| `bkgradients.suffix.*` | All suffix permissions | `false` |
+| `bkgradients.suffix.use` | Use the suffix module | `true` |
+| `bkgradients.suffix.bypass` | Skip content restrictions | `false` |
+
+---
+
+## Tags
+
+| Permission | Description | Default |
+|---|---|---|
+| `bkgradients.tags.*` | All tag permissions | `false` |
+| `bkgradients.tags.use` | Use the tags module | `true` |
+| `bkgradients.tags.<tag_id>` | Access a specific permission-locked tag | varies |
+
+### Built-in tag permissions
+
+These nodes are pre-defined in `plugin.yml`:
+
+| Permission | Default |
+|---|---|
+| `bkgradients.tag.member` | `true` |
+| `bkgradients.tag.vip` | `false` |
+| `bkgradients.tag.mvp` | `false` |
+| `bkgradients.tag.legend` | `false` |
+| `bkgradients.tag.staff` | `false` |
+| `bkgradients.tag.owner` | `op` |
+
+### Granting tag access with LuckPerms
+
+```
+/lp group vip permission set bkgradients.tags.crown true
+```
+
+:::caution[Case sensitive]
+The permission node must **exactly** match the YAML key under `Tags:` in `tags.yml`. A mismatch — even a single uppercase letter — will leave the tag locked.
+:::

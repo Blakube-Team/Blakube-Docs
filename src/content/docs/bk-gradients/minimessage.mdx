@@ -1,0 +1,75 @@
+---
+title: MiniMessage
+description: MiniMessage formatting reference for BK-Gradients.
+---
+
+# MiniMessage
+
+All `display_name`, `lore`, `title`, message, and description values support full MiniMessage syntax.
+
+---
+
+## Colors
+
+```
+<red>         <green>       <blue>        <yellow>
+<gray>        <dark_gray>   <white>       <black>
+<gold>        <aqua>        <dark_aqua>   <light_purple>
+<dark_purple> <dark_red>    <dark_green>  <dark_blue>
+
+<#RRGGBB>            — any HEX color
+<color:#RRGGBB>      — same as above
+```
+
+---
+
+## Gradients
+
+```
+<gradient:#FF0000:#0000FF>text</gradient>
+<gradient:#FF0000:#00FF00:#0000FF>text</gradient>   — 3-stop gradient
+```
+
+---
+
+## Text styles
+
+```
+<bold>          <b>
+<italic>        <i>
+<underlined>    <u>
+<strikethrough> <st>
+<obfuscated>    <obf>
+<!italic>            — explicitly removes italic (useful in lore lines)
+```
+
+---
+
+## Decorations & events
+
+```
+<reset>                          — clear all active formatting
+<newline>                        — line break
+
+<hover:show_text:'tooltip'>text</hover>
+<click:run_command:'/bkg'>text</click>
+<click:suggest_command:'/prefix'>text</click>
+<click:open_url:'https://...'>text</click>
+```
+
+---
+
+## Examples
+
+```yaml
+display_name: "<gradient:#A855F7:#EC4899><bold>VIP</bold></gradient>"
+display_name: "<dark_gray>(<#00FFAA>⭐<dark_gray>) <white>My Item"
+
+lore:
+  - "<!italic><gray>Normal lore line"
+  - "<!italic><#FF5555> ▸ Click to use!"
+```
+
+:::tip
+Start lore lines with `<!italic>` to override Minecraft's default italic formatting on item lore.
+:::

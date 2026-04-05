@@ -1,0 +1,54 @@
+---
+title: PlaceholderAPI
+description: PlaceholderAPI placeholders for BK-Gradients.
+---
+
+# PlaceholderAPI
+
+BK-Gradients registers placeholders automatically when PlaceholderAPI is installed.
+
+:::note[Installation]
+Install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) before starting your server to enable these placeholders.
+:::
+
+---
+
+## Legacy placeholders
+
+Use these in any plugin that supports `%..%` PlaceholderAPI syntax — EssentialsX chat format, scoreboards, TAB, etc.
+
+| Placeholder | Returns |
+|---|---|
+| `%bkgradients_prefix%` | Player's prefix (legacy color codes) |
+| `%bkgradients_prefix_text%` | Raw prefix text |
+| `%bkgradients_prefix_color1%` | Start color HEX |
+| `%bkgradients_prefix_color2%` | End color HEX |
+| `%bkgradients_nick%` | Colored display name (legacy) |
+| `%bkgradients_nick_color1%` | Nick start color HEX |
+| `%bkgradients_nick_color2%` | Nick end color HEX |
+| `%bkgradients_suffix%` | Player's suffix (legacy color codes) |
+| `%bkgradients_suffix_text%` | Raw suffix text |
+| `%bkgradients_suffix_color1%` | Suffix start color HEX |
+| `%bkgradients_suffix_color2%` | Suffix end color HEX |
+| `%bkgradients_tag%` | Active tag symbol (legacy colored) |
+| `%bkgradients_tag_name%` | Active tag display name |
+| `%bkgradients_tag_id%` | Active tag ID key |
+| `%bkgradients_tag_color1%` | Tag start color HEX |
+| `%bkgradients_tag_color2%` | Tag end color HEX |
+
+---
+
+## MiniMessage placeholders
+
+Use these in plugins that support native MiniMessage parsing (e.g. some TAB forks).
+
+| Placeholder | Returns |
+|---|---|
+| `<bkgradients:prefix>` | Player's prefix as full MiniMessage gradient |
+| `<bkgradients:nick>` | Colored display name in MiniMessage |
+| `<bkgradients:suffix>` | Player's suffix as full MiniMessage gradient |
+| `<bkgradients:tag>` | Active tag in MiniMessage gradient |
+
+:::caution
+MiniMessage placeholders require a TAB or chat plugin that parses MiniMessage natively. Legacy `%..%` placeholders work anywhere PlaceholderAPI is supported.
+:::

@@ -1,0 +1,120 @@
+---
+title: Modules
+description: Deep dive into the four BK-Gradients cosmetic modules.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+# Modules
+
+BK-Gradients is split into **four independent cosmetic modules**. Each can be enabled or disabled individually in `config.yml` without affecting the others or losing any player data.
+
+---
+
+## Prefix
+
+Players set a custom text that appears **before** their name in chat. The text renders as a two-color HEX gradient with optional text styles (bold, italic, underline, small caps).
+
+### Editor navigation
+
+```
+/prefix
+  └── Prefix Editor
+        ├── First Color    → chat input: type a HEX code or color alias
+        ├── Second Color   → chat input: type a HEX code or color alias
+        ├── Prefix Text    → chat input: type the prefix text
+        ├── Styles         → sub-menu: Bold, Italic, Underline, Small Caps
+        ├── Preview        → live rendered preview
+        ├── History        → previous prefixes (click any to restore)
+        └── Save / Cancel
+```
+
+### Chat input prompts
+
+When a color or text prompt is open, the player types their value in chat.
+- Typing the cancel keyword (default: `cancel`) aborts the input.
+- Prompts expire automatically after `input.timeout-seconds` seconds.
+
+:::note[Cooldown]
+After saving, players must wait `modules.prefix.cooldown.time` seconds before saving again. Players with `bkgradients.admin` bypass this.
+:::
+
+---
+
+## Nick
+
+Colors the player's **display name** with a two-color HEX gradient. The real Minecraft username **never changes** — only the visual color applied to it.
+
+### Editor navigation
+
+```
+/nick
+  └── Nick Editor
+        ├── Color 1        → chat input: start color
+        ├── Color 2        → chat input: end color
+        ├── Styles         → Bold, Italic, Underline, Small Caps
+        ├── Preview        → shows the colored display name
+        ├── Reset Colors   → resets gradient to white (#FFFFFF)
+        ├── History        → previous color combinations
+        └── Save / Cancel
+```
+
+:::caution
+The nick name is always the player's real Minecraft username. Only the gradient colors and styles are editable — the username itself is never modified.
+:::
+
+---
+
+## Suffix
+
+Identical to the Prefix module but the text appears **after** the player's name.
+
+Uses the same editor layout, same validation options, and the same permission structure. Replace `prefix` with `suffix` in every command and permission node.
+
+---
+
+## Tags
+
+A full tagging system with categories, a GUI color picker, custom HEX input, and a favourites system.
+
+### Navigation flow
+
+```
+/tags
+  └── Categories Screen
+        └── [click category]
+              └── Tag List Screen
+                    ├── [left-click — Colors: true]    → equips tag, stays in list
+                    ├── [left-click — Colors: false]   → equips tag, closes menu
+                    ├── [right-click any tag]          → toggle favourite
+                    ├── [click "Paint Tags"]
+                    │     └── Color Picker Screen
+                    │           ├── [click preset]     → apply color to tag
+                    │           └── [click "HEX Custom"]
+                    │                 └── chat input:
+                    │                       1-char tag  → 1 HEX → solid color
+                    │                       2+ char tag → 2 HEX prompts → gradient
+                    └── [click "Favourites"]
+                          └── Favourites Screen
+                                ├── [left-click]   → equip
+                                └── [right-click]  → remove from favourites
+```
+
+### Tag color modes
+
+| `Colors:` | Behavior |
+|---|---|
+| `true` | Player can apply a gradient or solid color. Color picker enabled. |
+| `false` | Colors are fixed via `&` legacy codes in the `Tag:` field. Color picker disabled. |
+
+### Permission-locked tags
+
+If a tag has `Permission: true` and the player lacks `bkgradients.tags.<id>`, clicking it shows the `tags.locked` message and plays the error sound.
+
+### Custom HEX input flow
+
+| Tag length | Prompts | Result |
+|---|---|---|
+| 1 character | 1 chat prompt | Solid color (`color1 = color2`) |
+| 2+ characters | 2 chat prompts | Full gradient |
+| Same HEX twice | — | Solid color on multi-character tag |

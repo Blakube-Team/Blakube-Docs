@@ -1,0 +1,109 @@
+---
+title: Installation
+description: Install BK-Gradients on your Paper server in minutes.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+# Installation
+
+Get BK-Gradients running on your server in under 2 minutes.
+
+---
+
+## Requirements
+
+| | Requirement |
+|---|---|
+| **Server** | Paper 1.21 or newer |
+| **Java** | 17 or newer |
+| **PlaceholderAPI** | Optional — needed only for external tab/scoreboard placeholders |
+
+:::caution[Why Paper only?]
+BK-Gradients relies on Paper's **Adventure API** for MiniMessage rendering and **AsyncChatEvent** for chat input. Neither is available on Spigot or Bukkit.
+:::
+
+---
+
+## Installation steps
+
+<Steps>
+
+1. **Download the plugin**
+
+   Get `BKGradients.jar` from your purchase platform:
+
+   - [BuiltByBit →](https://builtbybit.com/resources/bk-gradients-tags-gradient-system.88792/)
+
+2. **Drop the jar into `/plugins`**
+
+   ```
+   server/
+   └── plugins/
+       └── BKGradients.jar   ← place it here
+   ```
+
+3. **Start the server**
+
+   All configuration files are generated automatically on first boot.
+
+4. **Configure and reload**
+
+   Edit `config.yml`, `messages.yml`, `tags.yml` and files inside `menus/` as needed, then run:
+
+   ```
+   /bkg reload
+   ```
+
+   Changes apply instantly — no restart required.
+
+</Steps>
+
+---
+
+## Generated file structure
+
+After the first start you will find this inside `plugins/BKGradients/`:
+
+```
+plugins/BKGradients/
+├── config.yml              ← Main config (database, modules, sounds, colors)
+├── messages.yml            ← All player-facing messages (MiniMessage format)
+├── tags.yml                ← Tag definitions, categories, and color presets
+├── data.db                 ← SQLite database (absent when using MySQL)
+└── menus/
+    ├── main_menu.yml
+    ├── prefix_menu.yml
+    ├── prefix_styles.yml
+    ├── prefix_history.yml
+    ├── nick_menu.yml
+    ├── nick_styles.yml
+    ├── nick_history.yml
+    ├── suffix_menu.yml
+    ├── suffix_styles.yml
+    ├── suffix_history.yml
+    ├── tags_categories.yml
+    ├── tags_list.yml
+    ├── tags_colors.yml
+    └── tags_favourites.yml
+```
+
+:::tip
+All menu files are **fully editable** — layouts, items, lore, sounds, and actions. You never need to recompile or modify the plugin jar.
+:::
+
+---
+
+## Verify the installation
+
+Run in-game or in console:
+
+```
+/bkg version
+```
+
+You should see the installed version. If the command is not recognized, check that the jar loaded correctly in your server console.
+
+:::note[PlaceholderAPI]
+If you want BK-Gradients placeholders to show in TAB, EssentialsX chat format, or scoreboards, install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) before starting the server.
+:::

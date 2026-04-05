@@ -1,0 +1,118 @@
+---
+title: FAQ
+description: Frequently asked questions about BK-Gradients.
+---
+
+# FAQ
+
+---
+
+## Why does the plugin require Paper and not Spigot?
+
+BK-Gradients uses Paper's **Adventure API** for MiniMessage rendering and Paper's **AsyncChatEvent** for intercepting chat input. Both APIs are unavailable on Spigot or Bukkit.
+
+---
+
+## How do I add a new tag?
+
+Add an entry under `Tags:` in `tags.yml` with a unique ID, then run `/bkg reload`. No restart needed.
+
+```yaml
+Tags:
+  my_new_tag:
+    Name: 'My Tag'
+    Tag: '✦'
+    Colors: true
+    Permission: false
+    Priority: 0
+    Category: default
+    Material: DIAMOND
+```
+
+---
+
+## How do I add a new tag category?
+
+1. Add an entry under `Categories:` in `tags.yml`
+2. Assign tags to it via their `Category:` field
+3. Add a new slot in `category-slots:` in `tags_categories.yml`
+4. Run `/bkg reload`
+
+---
+
+## How do I give a player access to a locked tag?
+
+Grant `bkgradients.tags.<tag_id>` via your permissions plugin.
+
+```
+/lp user Steve permission set bkgradients.tags.crown true
+```
+
+---
+
+## A player has the tag permission but it still shows as locked. Why?
+
+The permission node must **exactly** match the YAML key under `Tags:` — it is case-sensitive. Double-check that `bkgradients.tags.<tag_id>` matches the key in `tags.yml` precisely.
+
+---
+
+## How do I disable a module without losing player data?
+
+Set `enabled: false` in that module's section in `config.yml`. All player data is preserved in the database and will be restored when you re-enable it.
+
+---
+
+## Can multiple servers share the same cosmetic data?
+
+Yes. Set `database.type: MYSQL` and point all servers to the same MySQL database.
+
+---
+
+## How do I reload without restarting?
+
+```
+/bkg reload
+```
+
+This reloads `config.yml`, `messages.yml`, `tags.yml`, and all menu files. Active player sessions are not interrupted.
+
+---
+
+## How do I use custom skull textures for tag icons?
+
+Set `Material: PLAYER_HEAD` and provide a `Base64:` texture string.
+Get Base64 values from [minecraft-heads.com](https://minecraft-heads.com) — look for the **"Value"** field under "Other".
+
+```yaml
+Tags:
+  my_tag:
+    Material: PLAYER_HEAD
+    Base64: "eyJ0ZXh0dXJlcyI6..."
+```
+
+---
+
+## Can I combine Base64 and Custom_Model_Data?
+
+No. `Base64` only works with `Material: PLAYER_HEAD`. `Custom_Model_Data` works with any other material.
+
+---
+
+## How do I change the "None" text when no tag is equipped?
+
+Edit `tags.no-tag-name` in `messages.yml`:
+
+```yaml
+tags:
+  no-tag-name: "None"   # supports MiniMessage: "<gray>—</gray>"
+```
+
+Apply with `/bkg reload`.
+
+---
+
+## How do I clear a player's tag as an admin?
+
+```
+/tags admin clear <player>
+```
