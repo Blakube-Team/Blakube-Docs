@@ -9,6 +9,9 @@ export default defineConfig({
 			customCss: [
 				'./src/styles.css',
 			],
+			components: {
+				Head: './src/components/Head.astro',
+			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/Blakube/' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.blakube.com/' },

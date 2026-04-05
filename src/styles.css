@@ -1,5 +1,5 @@
 /* ================================================================
-   Blakube Design — Starlight Custom Theme v2
+   Blakube Design — Starlight Custom Theme v3
    ================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
@@ -12,7 +12,7 @@
 /* ── COLOR TOKENS ── */
 :root,
 [data-theme='dark'] {
-  --sl-color-accent-low:  rgba(43, 127, 255, 0.15);
+  --sl-color-accent-low:  rgba(43,127,255,0.15);
   --sl-color-accent:      #2B7FFF;
   --sl-color-accent-high: #00d4ff;
   --sl-color-white:       #e8edf5;
@@ -25,7 +25,7 @@
   --sl-color-gray-7:      #080c14;
   --sl-color-black:       #080c14;
   --sl-color-bg:          #080c14;
-  --sl-color-bg-nav:      rgba(8, 12, 20, 0.95);
+  --sl-color-bg-nav:      rgba(8,12,20,0.95);
   --sl-color-bg-sidebar:  #0a0f1c;
   --sl-color-text:        #c8d0e0;
   --sl-color-text-accent: #2B7FFF;
@@ -42,7 +42,7 @@
 }
 
 [data-theme='light'] {
-  --sl-color-accent-low:  rgba(43, 127, 255, 0.1);
+  --sl-color-accent-low:  rgba(43,127,255,0.1);
   --sl-color-accent:      #1a6ff0;
   --sl-color-accent-high: #0050cc;
   --sl-color-white:       #0d1321;
@@ -69,12 +69,8 @@
 *,
 body,
 .sl-markdown-content,
-nav,
-aside,
-header,
-footer,
-button,
-input {
+nav, aside, header, footer,
+button, input, select {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
@@ -122,9 +118,7 @@ a[aria-current='page']:hover {
 }
 
 /* ── CONTENT ── */
-.content-panel {
-  background: var(--sl-color-bg);
-}
+.content-panel { background: var(--sl-color-bg); }
 
 .sl-markdown-content {
   font-size: 0.95rem;
@@ -141,7 +135,6 @@ a[aria-current='page']:hover {
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--bk-border-dim);
   margin-bottom: 1.5rem;
-  font-family: 'Poppins', sans-serif !important;
 }
 .sl-markdown-content h2 {
   font-size: 1.3rem;
@@ -151,7 +144,6 @@ a[aria-current='page']:hover {
   margin-bottom: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--bk-border-dim);
-  font-family: 'Poppins', sans-serif !important;
 }
 .sl-markdown-content h3 {
   font-size: 1.05rem;
@@ -159,31 +151,23 @@ a[aria-current='page']:hover {
   color: var(--sl-color-white);
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
-  font-family: 'Poppins', sans-serif !important;
 }
 
-/* ── HEADING ANCHOR ICON — fix del ícono gigante ── */
-.sl-markdown-content .heading-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.sl-markdown-content a.anchor-link {
+/* ── HEADING ANCHOR — fix ícono gigante ── */
+.sl-markdown-content .heading-wrapper a.anchor-link {
   opacity: 0;
   transition: opacity 0.2s;
   color: var(--sl-color-gray-3);
-  text-decoration: none;
-  font-size: 0.9em !important;
+  text-decoration: none !important;
+  font-size: 0.75em !important;
   line-height: 1;
-  display: inline-flex;
-  align-items: center;
 }
-.sl-markdown-content .heading-wrapper:hover a.anchor-link {
-  opacity: 1;
-}
+.sl-markdown-content .heading-wrapper:hover a.anchor-link { opacity: 1; }
 .sl-markdown-content a.anchor-link svg {
-  width: 0.85em !important;
-  height: 0.85em !important;
+  width: 0.75em !important;
+  height: 0.75em !important;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* ── INLINE CODE ── */
@@ -192,7 +176,7 @@ a[aria-current='page']:hover {
   border: 1px solid var(--bk-border-dim);
   border-radius: 5px;
   padding: 2px 7px;
-  font-family: "GoogleSansCode", "Fira Code", monospace !important;
+  font-family: "GoogleSansCode", monospace !important;
   font-size: 0.83em;
   color: var(--bk-accent);
   white-space: nowrap;
@@ -204,15 +188,13 @@ a[aria-current='page']:hover {
   border: 1px solid var(--bk-border);
   border-radius: var(--bk-radius);
   padding: 1.25rem 1.5rem;
-  font-family: "GoogleSansCode", "Fira Code", monospace !important;
+  font-family: "GoogleSansCode", monospace !important;
   font-size: 0.85rem;
   line-height: 1.7;
   overflow-x: auto;
   margin: 1.5rem 0;
 }
-[data-theme='light'] .sl-markdown-content pre {
-  background: #0f1624 !important;
-}
+[data-theme='light'] .sl-markdown-content pre { background: #0f1624 !important; }
 .sl-markdown-content pre code {
   background: none !important;
   border: none !important;
@@ -220,28 +202,26 @@ a[aria-current='page']:hover {
   color: #c8d0e0;
   font-size: inherit;
   font-family: inherit !important;
+  white-space: pre;
 }
 
-/* ── TABLES — fix ancho completo y overflow ── */
+/* ── TABLES — FIX COMPLETO ── */
+/* Starlight envuelve tablas en .sl-overflow-auto */
+.sl-markdown-content .sl-overflow-auto {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--bk-radius);
+  border: 1px solid var(--bk-border-dim);
+  margin: 1.5rem 0;
+}
+
 .sl-markdown-content table {
   width: 100%;
   min-width: 100%;
   border-collapse: collapse;
-  border-radius: var(--bk-radius);
-  border: 1px solid var(--bk-border-dim);
   font-size: 0.875rem;
-  margin: 1.5rem 0;
+  margin: 0;          /* el margen lo da el wrapper .sl-overflow-auto */
   display: table;
-  overflow: visible;
-}
-
-/* wrapper que Starlight mete alrededor de las tablas */
-.sl-markdown-content .table-wrapper,
-.sl-markdown-content div[class*="table"] {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: var(--bk-radius);
-  margin: 1.5rem 0;
 }
 
 .sl-markdown-content thead tr {
@@ -257,7 +237,6 @@ a[aria-current='page']:hover {
   color: var(--sl-color-gray-2);
   border-bottom: 1px solid var(--bk-border);
   white-space: nowrap;
-  font-family: 'Poppins', sans-serif !important;
 }
 .sl-markdown-content td {
   padding: 0.65rem 1rem;
@@ -266,21 +245,17 @@ a[aria-current='page']:hover {
   vertical-align: middle;
   line-height: 1.6;
 }
-.sl-markdown-content tr:last-child td {
-  border-bottom: none;
-}
+.sl-markdown-content tr:last-child td { border-bottom: none; }
 .sl-markdown-content tbody tr:hover {
   background: color-mix(in srgb, var(--bk-blue) 4%, transparent);
 }
-
-/* código dentro de tabla */
 .sl-markdown-content td code,
 .sl-markdown-content th code {
   font-size: 0.8em;
   white-space: nowrap;
 }
 
-/* ── CALLOUTS / ASIDES ── */
+/* ── CALLOUTS ── */
 .starlight-aside {
   border-radius: var(--bk-radius);
   border-left-width: 3px;
@@ -292,19 +267,16 @@ a[aria-current='page']:hover {
   border-color: var(--bk-blue);
 }
 .starlight-aside--note .starlight-aside__title { color: var(--bk-blue); }
-
 .starlight-aside--tip {
   background: rgba(34,197,94,0.07);
   border-color: #22c55e;
 }
 .starlight-aside--tip .starlight-aside__title { color: #22c55e; }
-
 .starlight-aside--caution {
   background: rgba(234,179,8,0.07);
   border-color: #eab308;
 }
 .starlight-aside--caution .starlight-aside__title { color: #eab308; }
-
 .starlight-aside--danger {
   background: rgba(239,68,68,0.07);
   border-color: #ef4444;
@@ -337,12 +309,9 @@ a[aria-current='page']:hover {
   padding-left: 1.5rem;
   margin: 0.75rem 0;
 }
-.sl-markdown-content li {
-  margin: 0.35rem 0;
-  line-height: 1.7;
-}
+.sl-markdown-content li { margin: 0.35rem 0; line-height: 1.7; }
 
-/* ── CARD GRID de Starlight ── */
+/* ── CARDS ── */
 .card {
   border-color: var(--bk-border-dim) !important;
   background: var(--bk-surface) !important;
@@ -353,9 +322,7 @@ a[aria-current='page']:hover {
   border-color: var(--bk-border) !important;
   transform: translateY(-2px) !important;
 }
-.card .sl-flex svg {
-  color: var(--bk-blue) !important;
-}
+.card .sl-flex svg { color: var(--bk-blue) !important; }
 
 /* ── STEPS ── */
 .sl-steps {
@@ -366,7 +333,6 @@ a[aria-current='page']:hover {
 .sl-steps li::before {
   background: var(--bk-blue) !important;
   color: #fff !important;
-  font-family: 'Poppins', sans-serif !important;
   font-weight: 700;
   border: none !important;
 }
@@ -376,7 +342,6 @@ a[aria-current='page']:hover {
   font-size: 0.8rem;
   color: var(--sl-color-gray-3);
   transition: color 0.15s;
-  font-family: 'Poppins', sans-serif !important;
 }
 .right-sidebar-panel starlight-toc a:hover,
 .right-sidebar-panel starlight-toc a[aria-current='true'] {
@@ -389,7 +354,6 @@ a[aria-current='page']:hover {
   border: 1px solid var(--bk-border-dim);
   border-radius: var(--bk-radius);
   transition: all 0.2s;
-  font-family: 'Poppins', sans-serif !important;
 }
 .pagination-links a:hover {
   border-color: var(--bk-border);
@@ -401,13 +365,11 @@ site-search dialog {
   background: var(--bk-surface) !important;
   border: 1px solid var(--bk-border) !important;
   border-radius: 14px !important;
-  font-family: 'Poppins', sans-serif !important;
 }
 site-search input {
   background: var(--bk-surface2) !important;
   border-color: var(--bk-border) !important;
   color: var(--sl-color-white) !important;
-  font-family: 'Poppins', sans-serif !important;
 }
 
 /* ── BLOCKQUOTE ── */
@@ -427,13 +389,6 @@ site-search input {
   margin: 2.5rem 0;
 }
 
-/* ── BADGE/PILL utilities ── */
-.badge-blue   { display:inline-block;background:rgba(43,127,255,.15);color:#2B7FFF;border:1px solid rgba(43,127,255,.3);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700;font-family:"GoogleSansCode",monospace; }
-.badge-green  { display:inline-block;background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.3);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700; }
-.badge-red    { display:inline-block;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.3);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700; }
-.badge-yellow { display:inline-block;background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.3);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700; }
-.badge-gray   { display:inline-block;background:rgba(255,255,255,.07);color:#8a96b0;border:1px solid rgba(255,255,255,.1);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700; }
-
 /* ── BLAKUBE accent ── */
 .blakube { color: var(--bk-blue); font-weight: 800; }
 
@@ -441,7 +396,7 @@ site-search input {
 @media (max-width: 768px) {
   .sl-markdown-content h1 { font-size: 1.6rem; }
   .sl-markdown-content h2 { font-size: 1.15rem; }
-  .sl-markdown-content table { font-size: 0.8rem; }
+  .sl-markdown-content .sl-overflow-auto { font-size: 0.8rem; }
   .sl-markdown-content th,
   .sl-markdown-content td { padding: 0.5rem 0.75rem; }
 }

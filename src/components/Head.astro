@@ -1,0 +1,9 @@
+---
+// src/components/Head.astro
+// Override del Head de Starlight para inyectar el favicon correctamente
+import Default from '@astrojs/starlight/components/Head.astro';
+---
+<Default {...Astro.props}>
+  <link rel="icon" type="image/png" href="/brand/BLAKUBE_ICON.png" />
+  <link rel="shortcut icon" href="/brand/BLAKUBE_ICON.png" />
+</Default>
