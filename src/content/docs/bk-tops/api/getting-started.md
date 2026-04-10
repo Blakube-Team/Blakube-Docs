@@ -1,56 +1,40 @@
 ---
 title: "For developers: BK-Tops API"
 ---
-### BK-Tops API (JitPack) — Guide & Examples
 
-This document explains how to consume the BK‑Tops API module from JitPack and shows practical usage examples.
+# BK-Tops API
 
-#### What is it?
-The `api` module exposes a minimal, implementation‑agnostic API to interact with BK‑Tops from other Bukkit/Paper plugins. You can:
-- Access a loaded `Top` by id
-- Iterate all registered tops
-- Find which top a player is currently on
-- Register/unregister custom tops
-- Request a top to restart/rebuild
-
-Core entry points:
-- `TopAPI` — main interface
-- `TopAPIProvider` — static accessor and lifecycle guard for the singleton instance
+The `api` module exposes a minimal, implementation-agnostic interface to interact with BK-Tops from other Bukkit/Paper plugins.
 
 ---
 
-### Getting the API from JitPack
+## Adding the dependency
 
-BK‑Tops is built on JDK 21 and published for consumption via JitPack.
+BK-Tops is published via JitPack. Use a Git tag as the version for stable builds.
 
-Add JitPack to your repositories and depend on the API artifact.
-
-#### Gradle (Kotlin DSL)
+### Gradle (Kotlin DSL)
 ```kotlin
 repositories {
     maven("https://jitpack.io")
 }
 
 dependencies {
-    // Replace the version with a Git tag (recommended) or commit hash from this repo
-    // Examples: 1.0.0, 1.0.0-SNAPSHOT
     compileOnly("com.github.Blakube-Team:BK-Tops:Tag")
 }
 ```
 
-#### Gradle (Groovy)
+### Gradle (Groovy)
 ```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    // Use a Git tag or commit hash as the version
     compileOnly 'com.github.Blakube-Team:BK-Tops:Tag'
 }
 ```
 
-#### Maven
+### Maven
 ```xml
 <repositories>
   <repository>
@@ -60,198 +44,211 @@ dependencies {
 </repositories>
 
 <dependencies>
-    <dependency>
-        <groupId>com.github.Blakube-Team</groupId>
-        <artifactId>BK-Tops</artifactId>
-        <version>Tag</version>
-    </dependency>
+  <dependency>
+    <groupId>com.github.Blakube-Team</groupId>
+    <artifactId>BK-Tops</artifactId>
+    <version>Tag</version>
+    <scope>provided</scope>
+  </dependency>
 </dependencies>
 ```
 
-Notes
-- <jitpack-version>: Use a Git tag from this repository for stable builds, or a commit SHA for pinning.
-- Scope: Prefer `compileOnly`/`provided` — the server will provide BK‑Tops at runtime.
-- Java version: Your plugin should target Java 17+ runtime on modern Paper, but this API is compiled with toolchain Java 21.
+Use `compileOnly`/`provided` — the server provides BK-Tops at runtime. Do not shade the plugin itself.
 
 ---
 
-### Quick Start
+## Quick start
 
-1) Declare a soft/hard dependency in your `plugin.yml` to ensure BK‑Tops loads before your plugin if you require the API at startup:
+Declare a dependency in your `plugin.yml` so BK-Tops loads before your plugin:
+
 ```yaml
-# plugin.yml
-depend: [BK-Tops]      # hard dependency (your plugin won’t load without BK‑Tops)
+depend: [BK-Tops]     # hard dependency
 # or
-softdepend: [BK-Tops]  # soft dependency (you must handle API absence)
+softdepend: [BK-Tops] # soft dependency — you must handle API absence
 ```
 
-2) Access the API safely:
+Access the API safely:
+
 ```java
 import com.blakube.bktops.api.TopAPI;
 import com.blakube.bktops.api.TopAPIProvider;
 
 public final class MyPlugin extends JavaPlugin {
-  @Override
-  public void onEnable() {
-    if (!TopAPIProvider.isAvailable()) {
-      getLogger().warning("BK-Tops API not available. Is the plugin installed and enabled?");
-      // Decide: either disable or continue in degraded mode
-      return;
+    @Override
+    public void onEnable() {
+        if (!TopAPIProvider.isAvailable()) {
+            getLogger().warning("BK-Tops API not available.");
+            return;
+        }
+        TopAPI api = TopAPIProvider.getInstance();
     }
-
-    TopAPI api = TopAPIProvider.getInstance();
-    // use the API ...
-  }
 }
 ```
 
 ---
 
-### API Overview
+## API reference
 
-`TopAPI` (from `api/src/main/java/com/blakube/bktops/api/TopAPI.java`):
+### `TopAPI`
+
 ```java
 public interface TopAPI {
-  @Nullable Top getTop(@NotNull String id);
-  @NotNull Collection<Top> getAllTops();
-  Optional<Top> getTopByPlayer(@NotNull Player player);
+    @Nullable  Top              getTop(@NotNull String id);
+    @NotNull   Collection<Top> getAllTops();
+               Optional<Top>   getTopByPlayer(@NotNull Player player);
 
-  boolean restartTop(@NotNull String topId);
-  void registerTop(@NotNull Top top);
-  void unregisterTop(@NotNull String topId);
+    boolean restartTop(@NotNull String topId);
+    void    registerTop(@NotNull Top top);
+    void    unregisterTop(@NotNull String topId);
 }
 ```
 
-Key model types in the API module you may also use:
-- `com.blakube.bktops.api.top.Top`
-- `com.blakube.bktops.api.top.TopEntry`
-- `com.blakube.bktops.api.timed.TimedTop` and `ResetSchedule`
-- `com.blakube.bktops.api.queue.*` for processing queue primitives
-- `com.blakube.bktops.api.event.*` for listening to domain events
+### `TopConfig`
+
+Each `Top` exposes its config via `top.getConfig()`:
+
+```java
+TopConfig config = top.getConfig();
+
+config.getSize();             // int — number of tracked positions
+config.getDisplayName();      // @Nullable String — human-readable name set in tops.yml (null if not configured)
+config.getConditionSet();     // @NotNull ConditionSet — entry conditions (isEmpty() == true if none configured)
+
+config.isEnableOnlineQueue();   // boolean
+config.getOnlineQueueInterval();// int (ticks)
+config.isEnableRotativeQueue(); // boolean
+config.getRotativeQueueSize();  // int
+config.getBatchSize();          // int
+config.getTickDelay();          // int
+```
+
+### `ConditionSet`
+
+```java
+ConditionSet conditions = top.getConfig().getConditionSet();
+
+conditions.isEmpty();              // true if no conditions are configured
+conditions.getRawExpressions();    // List<String> — placeholder expressions, e.g. "%essentials_is_banned% == false"
+conditions.getInactivityDays();    // int — 0 means disabled
+```
+
+### Key model types
+
+| Type | Package |
+|---|---|
+| `Top` | `com.blakube.bktops.api.top` |
+| `TopEntry` | `com.blakube.bktops.api.top` |
+| `TopConfig` | `com.blakube.bktops.api.storage.config` |
+| `ConditionSet` | `com.blakube.bktops.api.storage.config` |
+| `TimedTop`, `ResetSchedule` | `com.blakube.bktops.api.timed` |
+| Queue primitives | `com.blakube.bktops.api.queue` |
+| Events | `com.blakube.bktops.api.event` |
 
 ---
 
-### Common Tasks — Code Examples
+## Code examples
 
-#### 1) Get a top by id and iterate entries
+### Get a top and iterate entries
+
 ```java
 TopAPI api = TopAPIProvider.getInstance();
 Top top = api.getTop("kills");
 if (top != null) {
-  for (TopEntry entry : top.getEntries()) {
-    getLogger().info(entry.getName() + ": " + entry.getValue());
-  }
+    for (TopEntry entry : top.getEntries()) {
+        getLogger().info(entry.getName() + ": " + entry.getValue());
+    }
 }
 ```
 
-#### 2) List all registered tops
+### List all registered tops
+
 ```java
-TopAPI api = TopAPIProvider.getInstance();
-for (Top top : api.getAllTops()) {
-  getLogger().info("Top: " + top.getId());
+for (Top top : TopAPIProvider.getInstance().getAllTops()) {
+    String label = top.getConfig().getDisplayName() != null
+            ? top.getConfig().getDisplayName()
+            : top.getId();
+    getLogger().info("Top: " + label);
 }
 ```
 
-#### 3) Check if a player is currently on any top
+### Check if a player is ranked in any top
+
 ```java
-TopAPI api = TopAPIProvider.getInstance();
-api.getTopByPlayer(player).ifPresent(playerTop -> {
-  player.sendMessage("You are on the top: " + playerTop.getId());
+TopAPIProvider.getInstance().getTopByPlayer(player).ifPresent(top -> {
+    player.sendMessage("You are ranked in: " + top.getId());
 });
 ```
 
-#### 4) Restart a top’s processing
+### Restart a top's processing
+
 ```java
 boolean accepted = TopAPIProvider.getInstance().restartTop("kills");
 if (!accepted) {
-  getLogger().warning("Top restart request was not accepted (unknown id or busy).");
+    getLogger().warning("Restart not accepted — unknown id or busy.");
 }
 ```
 
-#### 5) Register and unregister a custom top
-If you implement your own `Top` (or `TimedTop`), you can register/unregister it dynamically:
+### Register and unregister a custom top
+
 ```java
 Top myTop = /* your Top implementation */;
 TopAPI api = TopAPIProvider.getInstance();
 api.registerTop(myTop);
-// ... later
+// later:
 api.unregisterTop(myTop.getId());
 ```
 
 ---
 
-### Listening to API Events
+## Listening to events
 
-The API exposes Bukkit events under `com.blakube.bktops.api.event.*` that you can listen to in your plugin.
+Events are under `com.blakube.bktops.api.event.*`.
 
-Example: react to player position updates in a top
+### React to position updates
+
 ```java
 import com.blakube.bktops.api.event.top.TopPositionUpdateEvent;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 public final class TopEventsListener implements Listener {
-  @EventHandler
-  public void onTopUpdate(TopPositionUpdateEvent e) {
-    String topId = e.getTopId();
-    UUID playerId = e.getPlayerId();
-    int newPosition = e.getNewPosition();
-    // Your logic here
-  }
+    @EventHandler
+    public void onTopUpdate(TopPositionUpdateEvent e) {
+        String topId    = e.getTopId();
+        UUID   playerId = e.getPlayerId();
+        int    newPos   = e.getNewPosition();
+    }
 }
 ```
 
-Example: react to scheduled resets for timed tops
+### React to timed top resets
+
 ```java
 import com.blakube.bktops.api.event.top.TimedTopResetEvent;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 public final class TimedTopListener implements Listener {
-  @EventHandler
-  public void onTimedReset(TimedTopResetEvent e) {
-    getLogger().info("Timed top reset: " + e.getTopId() + " scope=" + e.getScope());
-  }
+    @EventHandler
+    public void onTimedReset(TimedTopResetEvent e) {
+        getLogger().info("Reset: " + e.getTopId() + " scope=" + e.getScope());
+    }
 }
 ```
 
-Don’t forget to register your listener in `onEnable`:
+Register listeners in `onEnable`:
+
 ```java
 getServer().getPluginManager().registerEvents(new TopEventsListener(), this);
 ```
 
 ---
 
-### Best Practices & Notes
+## Troubleshooting
 
-- Initialization
-    - Use `TopAPIProvider.isAvailable()` before calling `getInstance()` if BK‑Tops might be missing.
-    - Declare `depend`/`softdepend` on `BK-Tops` in `plugin.yml` to control load order.
+**"TopAPI not initialized yet! Is BK-Tops plugin loaded?"**
+You called `getInstance()` before BK-Tops finished enabling, or BK-Tops is not installed. Add `depend: [BK-Tops]` or guard with `isAvailable()`.
 
-- Classpath
-    - Use `compileOnly`/`provided` for the API dependency. Do not shade the BK‑Tops plugin itself.
-
-- Versioning via JitPack
-    - Prefer Git tags for reproducible builds, e.g. `1.0.0`.
-    - For bleeding‑edge, you may use a commit SHA or a branch with `-SNAPSHOT` if enabled.
-
-- Java & Paper API
-    - The API declares a `compileOnly` dependency on `io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT`. Your plugin should target a compatible Paper/Spigot version.
+**"TopAPI already initialized!"**
+Internal to BK-Tops. Ensure you are not repackaging or loading multiple copies of the plugin.
 
 ---
 
-### Troubleshooting
-
-- “TopAPI not initialized yet! Is BK‑Tops plugin loaded?”
-    - Cause: You called `TopAPIProvider.getInstance()` before BK‑Tops finished enabling, or BK‑Tops isn’t installed.
-    - Fix: Add `depend: [BK-Tops]` or check `TopAPIProvider.isAvailable()` before accessing.
-
-- “TopAPI already initialized!” during `setInstance`
-    - This is internal to BK‑Tops. If you see it, ensure you are not repackaging or loading multiple copies.
-
----
-
-### License
-BK‑Tops is distributed under the terms of the LICENSE file in the repository.
-
----
+## License
+BK-Tops is distributed under the terms of the LICENSE file in the repository.

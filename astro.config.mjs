@@ -13,7 +13,7 @@ export default defineConfig({
 				Head: './src/components/Head.astro',
 			},
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/Blakube/' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/Blakube-Team/' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.blakube.com/' },
 			],
 			sidebar: [
@@ -23,9 +23,11 @@ export default defineConfig({
 						{ label: 'Introduction', slug: 'bk-tops/intro/introduction' },
 						{ label: 'Installation', slug: 'bk-tops/intro/installation' },
 						{ label: 'How to',       slug: 'bk-tops/config/how-to' },
+						{ label: 'Conditions',   slug: 'bk-tops/config/conditions' },
 						{ label: 'Hooks',        slug: 'bk-tops/config/hooks' },
 						{ label: 'Placeholders', slug: 'bk-tops/config/placeholders' },
 						{ label: 'Commands',     slug: 'bk-tops/config/commands' },
+						{ label: 'Permissions',  slug: 'bk-tops/config/permissions' },
 						{ label: 'Addons',       slug: 'bk-tops/addons/notify' },
 						{ label: 'API',          slug: 'bk-tops/api/getting-started' },
 					],
@@ -45,6 +47,13 @@ export default defineConfig({
 						{ label: 'Database',       slug: 'bk-gradients/database' },
 						{ label: 'MiniMessage',    slug: 'bk-gradients/minimessage' },
 						{ label: 'FAQ',            slug: 'bk-gradients/faq' },
+					],
+				},
+				{
+					label: 'Legal',
+					items: [
+						{ label: 'Privacy Policy', slug: 'legal/privacy' },
+						{ label: 'Terms of Use',   slug: 'legal/terms' },
 					],
 				},
 			],

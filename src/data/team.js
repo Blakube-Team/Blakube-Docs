@@ -33,7 +33,7 @@ export const team = [
     name: "Imhhitt",
     role: "Lead Developer",
     avatar: "/brand/team/avatar-hhitt.png",
-    avatarFallback: "JN",
+    avatarFallback: "IH",
     avatarBgLight: "#e8f0ff",
     avatarBgDark: "#0d1a3a",
     banner: "/brand/team/rtxjean-banner.jpg",

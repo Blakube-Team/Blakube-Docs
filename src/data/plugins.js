@@ -8,6 +8,7 @@ export const plugins = [
   {
     id: "bk-tops",
     name: "BK-Tops",
+    docsPath: "/bk-tops/intro/introduction/",
     description: "Advanced leaderboard system with dynamic rankings, team support, smart caching and async processing for zero lag.",
     price: "Free",
     discount: null,
@@ -30,6 +31,7 @@ export const plugins = [
   {
     id: "bk-gradients",
     name: "BK-Gradients",
+    docsPath: "/bk-gradients/introduction/",
     description: "Full visual identity system. HEX gradient prefixes, nicks, suffixes and tags with 100% YAML-driven GUIs and live reload.",
     price: "$7.99",
     discount: null,
@@ -47,6 +49,7 @@ export const plugins = [
   {
     id: "bk-claims",
     name: "BK-Claims",
+    docsPath: null,
     description: "Ultra-high performance land protection system. Zero-lag particle borders, intuitive GUI management, and deep permission control for modern servers.",
     price: "$9.99",
     discount: null, // Puedes poner "20%" si decides ponerlo en oferta
@@ -63,6 +66,7 @@ export const plugins = [
   {
     id: "bk-tops-notify",
     name: "BK-Tops Notify Addon",
+    docsPath: "/bk-tops/addons/notify/",
     description: "Dynamic notification system for BK-Tops. Keep your players engaged with real-time ranking updates, personal milestones, and leaderboard change alerts.",
     price: "$2.50",
     discount: null,

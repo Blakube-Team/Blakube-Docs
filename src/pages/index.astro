@@ -208,7 +208,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
     <a href="/" class="nav-logo"><img src="/brand/BLAKUBE_ICON.png" alt="Blakube"></a>
     <ul class="nav-links">
       <li><a href="#plugins">Plugins</a></li>
-      <li><a href="/bk-tops/introduction/">Docs</a></li>
+      <li><a href="/bk-tops/intro/introduction/">Docs</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#community">Community</a></li>
     </ul>
@@ -218,7 +218,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         <button class="theme-btn" id="btn-auto"  onclick="setTheme('auto')"  title="Auto"><i class="bi bi-circle-half"></i></button>
         <button class="theme-btn" id="btn-dark"  onclick="setTheme('dark')"  title="Dark"><i class="bi bi-moon"></i></button>
       </div>
-      <a href="https://github.com/Blakube/" target="_blank" class="nav-icon" title="GitHub"><i class="bi bi-github"></i></a>
+      <a href="https://github.com/Blakube-Team/" target="_blank" class="nav-icon" title="GitHub"><i class="bi bi-github"></i></a>
       <a href="https://discord.blakube.com/" target="_blank" class="nav-icon" title="Discord"><i class="bi bi-discord"></i></a>
     </div>
   </div>
@@ -306,7 +306,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
                 <a href={dl.href} target="_blank" class="dl-btn"><i class="bi bi-download"></i>{dl.label}</a>
               ))}
             </div>
-            <a href={`/${plugin.id}/introduction/`} class="plugin-doc-link">Docs <i class="bi bi-arrow-right"></i></a>
+            {plugin.docsPath && <a href={plugin.docsPath} class="plugin-doc-link">Docs <i class="bi bi-arrow-right"></i></a>}
           </div>
         </div>
       </div>
@@ -362,6 +362,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
           <div class="member-role" style={`background:${member.roleColor.bg};color:${member.roleColor.text};border:1px solid ${member.roleColor.border};`}>{member.role}</div>
           <div class="member-icons">
             {member.links.twitter  && <a href={member.links.twitter}  target="_blank" class="icon-link" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>}
+            {member.links.youtube  && <a href={member.links.youtube}  target="_blank" class="icon-link" title="YouTube"><i class="bi bi-youtube"></i></a>}
             {member.links.github   && <a href={member.links.github}   target="_blank" class="icon-link" title="GitHub"><i class="bi bi-github"></i></a>}
             {member.links.behance  && <a href={member.links.behance}  target="_blank" class="icon-link" title="Behance"><i class="bi bi-behance"></i></a>}
             {member.links.discord  && <button class="icon-link" onclick={`copyText('${member.links.discord}','cf-m-${member.name}')`} title="Copy Discord"><i class="bi bi-discord"></i></button>}
@@ -391,7 +392,7 @@ footer{border-top:1px solid var(--border-dim);padding:3rem 0 5rem;margin-top:2re
         <ul>
           {plugins.map((plugin) => (
             <li>
-              <a href={`/${plugin.id}/introduction/`}>
+              <a href={plugin.docsPath ?? '#'}>
                 {plugin.name}
                 {plugin.featured && <span class="footer-badge">{plugin.featuredLabel}</span>}
                 {plugin.discount && <span class="footer-badge sale">{plugin.discount} OFF</span>}

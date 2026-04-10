@@ -5,7 +5,7 @@
 
 export const community = [
   { label: "Discord",    icon: "bi-discord",   href: "https://discord.blakube.com/",                    external: true  },
-  { label: "GitHub",     icon: "bi-github",    href: "https://github.com/Blakube/",                     external: true  },
+  { label: "GitHub",     icon: "bi-github",    href: "https://github.com/Blakube-Team/",                external: true  },
   { label: "Twitter / X",icon: "bi-twitter-x", href: "https://x.com/blakubedesign",                    external: true  },
   { label: "Instagram",  icon: "bi-instagram", href: "https://www.instagram.com/blakubedesign",         external: true  },
   { label: "Behance",    icon: "bi-behance",   href: "https://www.behance.net/blakube",                 external: true  },
