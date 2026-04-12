@@ -40,6 +40,7 @@ const serversLoop = [...servers, ...servers];
   --card-shadow-hover:0 6px 24px rgba(43,127,255,0.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 html,body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 a,button,[role=button],.plugin-card,.team-card,.carousel-item{cursor:pointer;}
