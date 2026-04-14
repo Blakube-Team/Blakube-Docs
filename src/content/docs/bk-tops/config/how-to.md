@@ -143,49 +143,38 @@ number-format:
 
 ### Time formatting
 
-Used automatically when a top has `value-format: TIME`. The score (in seconds) is broken into units and displayed as a human-readable duration.
+Used automatically when a top has `value-format: TIME`. The score (in seconds) is split into units from largest to smallest. `significant-figures` controls how many units are shown, starting from the first non-zero one.
 
 Configured in `config.yml` under `time-format`:
 
 ```yaml
 time-format:
   separator: " "
-  units:
-    years:
-      enabled: false
-      suffix: "y"
-    months:
-      enabled: false
-      suffix: "mo"
-    weeks:
-      enabled: false
-      suffix: "w"
-    days:
-      enabled: false
-      suffix: "d"
-    hours:
-      enabled: true
-      suffix: "h"
-    minutes:
-      enabled: true
-      suffix: "m"
-    seconds:
-      enabled: true
-      suffix: "s"
+  # How many units to show, starting from the largest non-zero one.
+  # 3 → "1d 2h 30m" | 2 → "1d 2h" | 1 → "1d"
+  significant-figures: 3
+  suffixes:
+    years: "y"
+    months: "mo"
+    weeks: "w"
+    days: "d"
+    hours: "h"
+    minutes: "m"
+    seconds: "s"
 ```
 
-- Only **enabled** units are shown. Disabled units are completely ignored.
-- Units with a value of **zero are hidden** unless all enabled units are zero, in which case the smallest enabled unit is shown as `0<suffix>`.
-- The default configuration shows hours, minutes, and seconds: `19h 49m 12s`.
+Units are always displayed from largest to smallest. If a unit in the middle is zero, it is still shown so the scale is always clear (`1d 0h 30m`, not `1d 30m`).
 
-**Examples with different unit configurations:**
+**Examples:**
 
-| Enabled units | Score | Output |
+| significant-figures | Score | Output |
 |---|---|---|
-| h, m, s (default) | 71,352 s | `19h 49m 12s` |
-| d, h, m, s | 90,000 s | `1d 1h` (zero minutes/seconds hidden) |
-| d only | 90,000 s | `1d` |
-| y, mo, d, h, m, s | 5,000,000 s | `1y 9mo 3d 21h 6m 40s` |
+| 3 (default) | 71,352 s | `19h 49m 12s` |
+| 2 | 71,352 s | `19h 49m` |
+| 1 | 71,352 s | `19h` |
+| 3 | 90,061 s | `1d 1h 1s` |
+| 3 | 86,400 s | `1d 0h 0m` |
+| 4 | 5,000,000 s | `1y 9mo 3d 21h` |
 
 ### Per-top value-format
 
@@ -207,14 +196,14 @@ All placeholders for that top (`value`, `spaced`, `distance_above`, `distance_be
 
 ### Per-placeholder inline override
 
-You can also override the format on a single placeholder without touching `tops.yml`, using the `:<MODE>` syntax:
+You can override the format on a single placeholder without touching `tops.yml`. Two syntaxes are supported:
 
 ```
 %bktops_value:TIME_time_played_1%
-%bktops_value:COMPACT_money_1%
+%bktops_value_TIME_time_played_1%
 ```
 
-Inline overrides take priority over `value-format` in `tops.yml`. See the [Placeholders](/bk-tops/config/placeholders) page for the full list.
+Both are equivalent. Use whichever your hologram or scoreboard plugin handles better. Inline overrides take priority over `value-format` in `tops.yml`. See the [Placeholders](/bk-tops/config/placeholders) page for the full list.
 
 ## How tops are processed
 

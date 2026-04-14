@@ -25,10 +25,11 @@ description: All placeholders provided by BK-Tops via PlaceholderAPI.
 
 ## Value format modifier
 
-Append `:<MODE>` to `bktops_value` to override the display format for that placeholder only, regardless of what is configured globally or per-top.
+You can override the display format for a single placeholder, regardless of what is configured globally or per-top. Two syntaxes are supported — use whichever your plugin handles better:
 
 ```
 %bktops_value:<MODE>_<top-id>_<position>%
+%bktops_value_<MODE>_<top-id>_<position>%
 ```
 
 **Available modes:**
@@ -42,12 +43,14 @@ Append `:<MODE>` to `bktops_value` to override the display format for that place
 | `TIME` | Treats the value as seconds and formats it as a human-readable duration | `19h 49m 12s` |
 
 ```
-%bktops_value:COMPACT_money_1%       → 1.23M
-%bktops_value:ROUNDED_money_1%       → 1,234,568
-%bktops_value:TIME_time_played_1%    → 19h 49m 12s
+%bktops_value:COMPACT_money_1%        → 1.23M
+%bktops_value_COMPACT_money_1%        → 1.23M  (same result)
+%bktops_value:ROUNDED_money_1%        → 1,234,568
+%bktops_value:TIME_time_played_1%     → 19h 49m 12s
+%bktops_value_TIME_time_played_1%     → 19h 49m 12s  (same result)
 ```
 
-The `spaced` and `distance_above`/`distance_below` placeholders also respect the format configured for the top (see [value-format in tops.yml](/bk-tops/config/how-to#value-format)).
+The `spaced` and `distance_above`/`distance_below` placeholders respect the format configured for the top automatically — see [value-format in tops.yml](/bk-tops/config/how-to#value-formatting).
 
 ## Examples
 

@@ -48,6 +48,11 @@ Not only player score, also team score and clan score are supported:
 * **Batch processing**: batch writes (up to 20 players per query), reduces db load and automatic flush.
 * **Asynchronous processing**: all db ops run in separate threads, 0% lag on the main server.
 
+## Value formatting
+* **Number formats**: exact, rounded, compact (`1.23M`), compact rounded (`1M`) — configured globally or per-top.
+* **Time format**: tops backed by time-based statistics (e.g. `%statistic_time_played%`) display values as `19h 49m 12s` instead of a raw number. Configurable significant figures and suffixes.
+* **Per-placeholder override**: force a specific format on any individual placeholder without changing the top config.
+
 ## Extras
 * **Multiple databases**: choose between H2 and MySQL according to your needs.
 * **Advanced data architecture**: db tables, snapshots, optimized indexes.

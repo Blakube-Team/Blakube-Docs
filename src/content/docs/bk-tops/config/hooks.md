@@ -3,24 +3,28 @@ title: BK-Tops Hooks
 description: How to integrate BK-Tops with other plugins.
 ---
 
-# Clans or Team:
-If you create team or timed-team tops BK-Tops will automatically detect and use them.
-It will choose the highest priority team or clan plugin that is installed.
+# Team / Clan hooks
 
-### Hook list:
-* `BentoBox`
-* `BetterTeams`
-* `FactionsUUID`
-* `KingdomsX`
-* `Lands`
-* `SimpleClans`
-* `SuperiorSkyblock2`
-* `Towny`
-* `UltimateClans`
+When you create a `team` or `timed-team` top, BK-Tops automatically detects which supported clan or team plugin is installed and uses it to resolve team membership and display names. If more than one supported plugin is active, the one with the highest configured priority wins.
+
+**Supported plugins:**
+
+| Plugin | Default priority |
+|---|---|
+| Lands | 9 |
+| SuperiorSkyblock2 | 8 |
+| BentoBox | 7 |
+| UltimateClans | 6 |
+| KingdomsX | 5 |
+| Towny | 4 |
+| FactionsUUID | 3 |
+| BetterTeams | 2 |
+| SimpleClans | 1 |
+
+You can change priorities and disable individual hooks in `hooks.yml`. Plugins that are not installed are automatically skipped — no configuration needed.
 
 :::note
-If you need support for any other team or clan plugin, you can request it by 
-opening an issue on GitHub or on our Discord.
+If you need support for any other team or clan plugin, open an issue on GitHub or ask on Discord.
 :::
 
 ```yml
