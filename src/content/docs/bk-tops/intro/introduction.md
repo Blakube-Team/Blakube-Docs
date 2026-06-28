@@ -53,6 +53,14 @@ Not only player score, also team score and clan score are supported:
 * **Time format**: tops backed by time-based statistics (e.g. `%statistic_time_played%`) display values as `19h 49m 12s` instead of a raw number. Configurable significant figures and suffixes.
 * **Per-placeholder override**: force a specific format on any individual placeholder without changing the top config.
 
+## Event notifications
+Announce leaderboard milestones automatically — built in, no extra plugin required:
+* **In-game**: chat, titles, actionbars and sounds when a player hits #1, enters the podium, climbs, drops or first appears in a top.
+* **Discord**: mirror the same events to a channel via webhook, with optional embeds.
+* **Case-based rules**: per-event, first-match conditions (`position`, ranges, `improved`/`worsened`, new entry...) and audience routing (`all`, `player`, `world`).
+
+See the [Notifications](/bk-tops/addons/notify) page.
+
 ## Extras
 * **Multiple databases**: choose between H2 and MySQL according to your needs.
 * **Advanced data architecture**: db tables, snapshots, optimized indexes.

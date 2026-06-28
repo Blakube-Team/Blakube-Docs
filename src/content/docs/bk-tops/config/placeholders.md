@@ -14,6 +14,7 @@ description: All placeholders provided by BK-Tops via PlaceholderAPI.
 | `%bktops_spaced_<top-id>_<position>%` | Filler characters to align name and value (configured in `config.yml`). |
 | `%bktops_time_<top-id>%` | Time remaining until the next reset of a timed top. |
 | `%bktops_myposition_<top-id>%` | The requesting player's position in the top, or a configurable fallback if they are not ranked. |
+| `%bktops_myvalue_<top-id>%` | The requesting player's own score in the top, formatted with the top's `value-format`. Returns the not-in-top fallback if they are not ranked. |
 | `%bktops_displayname_<top-id>%` | The display name configured for the top, or the top ID if none is set. |
 | `%bktops_distance_above_<top-id>%` | Score difference between the requesting player and the entry directly above them. |
 | `%bktops_distance_below_<top-id>%` | Score difference between the requesting player and the entry directly below them. |
@@ -50,7 +51,14 @@ You can override the display format for a single placeholder, regardless of what
 %bktops_value_TIME_time_played_1%     → 19h 49m 12s  (same result)
 ```
 
-The `spaced` and `distance_above`/`distance_below` placeholders respect the format configured for the top automatically — see [value-format in tops.yml](/bk-tops/config/how-to#value-formatting).
+The same `:MODE` override works on `myvalue` (it has no position, so it ends with the top ID):
+
+```
+%bktops_myvalue:COMPACT_money%        → 1.23M
+%bktops_myvalue:TIME_time_played%     → 4d 12h 23m
+```
+
+The `myvalue`, `spaced` and `distance_above`/`distance_below` placeholders respect the format configured for the top automatically — see [value-format in tops.yml](/bk-tops/config/how-to#value-formatting).
 
 ## Examples
 
@@ -58,6 +66,8 @@ The `spaced` and `distance_above`/`distance_below` placeholders respect the form
 %bktops_name_money_1%            → NoHugsOnlyBugs
 %bktops_value_money_1%           → 1,234,567.00
 %bktops_myposition_money%        → 3   (or "You are not in the top!" if unranked)
+%bktops_myvalue_money%           → 1,234,567.00   (your own score; fallback if unranked)
+%bktops_myvalue_time_played%     → 4d 12h 23m
 %bktops_time_kills_monthly%      → 12d 4h
 %bktops_displayname_money%       → &6&lMoney Top
 %bktops_distance_above_money%    → 142,300.00  (points needed to reach the player above)

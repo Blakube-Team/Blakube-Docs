@@ -1,10 +1,14 @@
 ---
-title: "ADDON: Top-Events Notify"
+title: "Notifications"
 ---
 
-# BK-Tops-Notify
+# Notifications
 
-An addon for BK-Tops that sends configurable notifications when leaderboard events occur. Notifications can be delivered in-game (chat, titles, actionbars, sounds) and to Discord via webhooks.
+BK-Tops can send configurable notifications when leaderboard events occur. Notifications are delivered in-game (chat, titles, actionbars, sounds) and to Discord via webhooks.
+
+:::note
+This was previously shipped as a separate **BK-Tops-Notify** addon. It is now **built into BK-Tops** — no extra jar is required. Configuration lives in `notifications.yml` and `discord.yml` inside the BK-Tops folder.
+:::
 
 ---
 
@@ -16,10 +20,10 @@ An addon for BK-Tops that sends configurable notifications when leaderboard even
   - Actionbars
   - Sounds
 - Discord notifications via webhook with optional embed
-- Per-event and per-case configuration with first-match rule
+- Per-event and per-case configuration with a first-match rule
 - Placeholder support for both in-game and Discord messages
 - Audience routing per case: `all`, `player`, `world`
-- Live reload: `/bktopsnotify reload` (alias `/bktn`)
+- Live reload with `/bktops reload`
 
 ---
 
@@ -44,81 +48,100 @@ Triggered when a player's position or score changes. Cases are evaluated in orde
 
 ## Placeholders
 
-These placeholders are available in both in-game and Discord messages:
+These tokens are available in both in-game and Discord messages:
 
 | Placeholder | Description |
 |---|---|
 | `{player}` | Player name |
 | `{position}` | New position number |
-| `{old_position}` | Previous position number (absent for new entries) |
+| `{old_position}` | Previous position number (empty for new entries) |
 | `{top_id}` | Internal leaderboard ID |
 | `{top_name}` | Display name of the leaderboard (set via `display-name` in `tops.yml`; falls back to the top ID if not configured) |
-| `{score}` | New score/value |
+| `{score}` | New score/value (formatted with the top's `value-format`) |
 | `{old_score}` | Previous score/value |
 
 With PlaceholderAPI installed, any `%placeholder%` in messages is also expanded per player for player-directed outputs.
 
 ---
 
-## Configuration files
+## In-game configuration: `notifications.yml`
 
-### In-game: `config.yml`
-Location: `plugins/BK-Tops-Notify/config.yml`
+Location: `plugins/BK-Tops/configuration/notifications.yml`
 
-- `settings.debug` — toggles extra console logs
+- `enabled` — master switch for all in-game notifications
 - `events.timed-top-reset` — enable, audience, outputs
-- `events.top-position-update.cases` — ordered list of cases with matching rules
+- `events.top-position-update.cases` — ordered map of cases with matching rules
 
 **Output options per section/case:**
 
 | Key | Description |
 |---|---|
 | `chat.enabled` + `chat.lines` | Chat message lines |
-| `title.enabled` + `title`, `subtitle`, `fade-in`, `stay`, `fade-out` | Title/subtitle |
-| `actionbar.enabled` + `text`, `duration` | Actionbar (one-shot) |
-| `sound.enabled` + `name`, `volume`, `pitch` | Sound |
+| `title.enabled` + `title`, `subtitle`, `fade-in`, `stay`, `fade-out` | Title/subtitle (timings in ticks) |
+| `actionbar.enabled` + `text` | Actionbar (one-shot) |
+| `sound.enabled` + `name`, `volume`, `pitch` | Sound (`name` is a Bukkit `Sound` enum value) |
 
-**Matching keys for cases:**
+**Matching keys for cases (`when`):**
 
 ```yaml
-when.position: 1
-when.old-position: 3
-when.old-position: none
-when.old-position.not-equals: 1
-when.position-range: [1, 3]
-when.old-position-range: [4, 10]
-when.improved: true
-when.worsened: true
+when:
+  position: 1                 # exact new position
+  old-position: 3             # exact previous position
+  old-position: none          # only when the player was previously unranked
+  old-position:
+    not-equals: 1             # previous position is anything but 1
+  position-range: [1, 3]      # new position within range (inclusive)
+  old-position-range: [4, 10] # previous position within range
+  improved: true              # rank number decreased
+  worsened: true              # rank number increased
 ```
 
 **Formatting:** MiniMessage is supported. Legacy `&` color codes are also fully supported and used when no MiniMessage tags are detected.
 
-### Discord: `discord.yml`
-Location: `plugins/BK-Tops-Notify/discord.yml`
+---
+
+## Discord configuration: `discord.yml`
+
+Location: `plugins/BK-Tops/configuration/discord.yml`
+
+Disabled by default. Set `enabled: true` and paste your webhook URL to start sending. Cases mirror the in-game ones and use the same `when` matching rules.
 
 ```yaml
 enabled: true
-webhook_url: "https://discord.com/api/webhooks/..."
-username: "BK-Tops-Notify"
-avatar_url: "https://.../image.png"
+webhook_url: "https://discord.com/api/webhooks/ID/TOKEN"
+username: "BK-Tops"
+avatar_url: ""
 
 events:
   timed-top-reset:
-    content: "The {top_name} leaderboard has reset!"
+    enabled: true
+    content:
+      - ":arrows_counterclockwise: Top {top_name} (ID: {top_id}) has been reset!"
     embed:
+      enabled: true
       title: "Leaderboard Reset"
-      description: "{top_id} has been reset."
-      color: 16753920
+      description: "Top {top_name} has been reset. Push now to climb the ranks!"
+      color: 16755200 # orange
+
   top-position-update:
+    enabled: true
     cases:
-      - name: hit-first
+      hit-first:
         enabled: true
         when:
           position: 1
-        content: "{player} just reached #1 on {top_name}!"
+          old-position:
+            not-equals: 1
+        content:
+          - ":trophy: {player} just took FIRST place in {top_name}! ({score})"
+        embed:
+          enabled: true
+          title: ":trophy: New #1!"
+          description: "{player} is now #1 in {top_name} with {score}."
+          color: 16766720 # gold
 ```
 
-Messages are sent asynchronously via Java's `HttpClient`. Placeholders are identical to in-game.
+`username` and `avatar_url` can be overridden per event. Messages are sent asynchronously via Java's `HttpClient`; placeholders are identical to in-game.
 
 ---
 
@@ -126,18 +149,9 @@ Messages are sent asynchronously via Java's `HttpClient`. Placeholders are ident
 
 | Command | Permission | Description |
 |---|---|---|
-| `/bktopsnotify reload` | `bktops.admin` | Reloads `config.yml` and `discord.yml` |
-| `/bktopsnotify test <type>` | `bktops.admin` | Simulates an event to test your configuration |
-
----
-
-## Installation
-
-1. Drop `BK-Tops-Notify-<version>.jar` into `plugins/`.
-2. Ensure dependencies are present: BK-Tops and PlaceholderAPI.
-3. Start the server to generate `config.yml` and `discord.yml`.
-4. Configure messages and cases in both files.
-5. Use `/bktn reload` to apply changes without restarting.
+| `/bktops reload` | `bk-tops.admin` | Reloads all configs, including `notifications.yml` and `discord.yml` |
+| `/bktops notify test update` | `bk-tops.admin` | Fires a sample `top-position-update` (run as a player) |
+| `/bktops notify test reset` | `bk-tops.admin` | Fires a sample `timed-top-reset` |
 
 ---
 
@@ -151,9 +165,9 @@ Messages are sent asynchronously via Java's `HttpClient`. Placeholders are ident
 
 ## Troubleshooting
 
-- **No messages?** Enable `settings.debug` and check the server console for warnings.
+- **No messages?** Enable `debug: true` in `config.yml` and check the console; also confirm `enabled: true` in `notifications.yml`.
 - **Placeholders not replaced?** Ensure PlaceholderAPI is installed and the placeholder is valid for the player/audience type.
-- **Discord not receiving messages?** Verify `enabled: true` and the `webhook_url` in `discord.yml`. Check server outbound firewall rules.
+- **Discord not receiving messages?** Verify `enabled: true` and a real `webhook_url` in `discord.yml` (the default `ID/TOKEN` placeholder URL is ignored). Check server outbound firewall rules.
 
 ---
 

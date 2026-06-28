@@ -9,9 +9,12 @@ All commands require the `bk-tops.admin` permission.
 
 | Command | Description |
 |---|---|
-| `/bktops reload` | Reloads all configuration files, tops, and settings. |
-| `/bktops reset <top-id>` | Immediately resets a timed top without waiting for its scheduled reset. |
+| `/bktops reload` | Reloads all configuration files (including `notifications.yml` and `discord.yml`), tops, and settings. |
+| `/bktops reset <top-id>` | Immediately resets a top, clearing its stored data. Useful for timed tops or after changing a top's `provider`. |
 | `/bktops compare <player1> <player2>` | Compares two players side by side across all registered tops. |
+| `/bktops debug <player>` | Inspects a player live for every top: bypass permission, conditions, the value read directly from the provider, and current position. |
+| `/bktops notify test update` | Fires a sample `top-position-update` notification (run as a player) to test `notifications.yml` / `discord.yml`. |
+| `/bktops notify test reset` | Fires a sample `timed-top-reset` notification. |
 
 ## `/bktops compare`
 
@@ -29,3 +32,13 @@ BK-Tops | Steve vs Alex
 ```
 
 The label shown for each top is its `display-name` if configured, otherwise the top ID. Scores are formatted using the configured number format.
+
+## `/bktops debug`
+
+Reads each top **live** for the given player — it calls the provider directly instead of showing the stored leaderboard value. For every top it reports the bypass permission, whether conditions pass, the parsed value, and the current position.
+
+This is the fastest way to tell a parsing/provider problem apart from stale data: if `debug` shows the correct value but the leaderboard shows a wrong one, the stored data is simply out of date (re-process the player, or run `/bktops reset <top-id>` after changing a `provider`).
+
+## `/bktops notify test`
+
+Simulates a notification so you can preview your `notifications.yml` and `discord.yml` without waiting for a real leaderboard change. `update` must be run by a player (it targets you as the involved player); `reset` can be run from console. See [Notifications](/bk-tops/addons/notify).
