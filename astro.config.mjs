@@ -28,7 +28,13 @@ export default defineConfig({
 						{ label: 'Placeholders', slug: 'bk-tops/config/placeholders' },
 						{ label: 'Commands',     slug: 'bk-tops/config/commands' },
 						{ label: 'Permissions',  slug: 'bk-tops/config/permissions' },
-						{ label: 'Addons',       slug: 'bk-tops/addons/notify' },
+						{
+							label: 'Addons',
+							items: [
+								{ label: 'Notifications', slug: 'bk-tops/addons/notify' },
+								{ label: 'Rewards',       slug: 'bk-tops/addons/rewards' },
+							],
+						},
 						{ label: 'API',          slug: 'bk-tops/api/getting-started' },
 					],
 				},

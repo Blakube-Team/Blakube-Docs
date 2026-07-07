@@ -15,6 +15,9 @@ All commands require the `bk-tops.admin` permission.
 | `/bktops debug <player>` | Inspects a player live for every top: bypass permission, conditions, the value read directly from the provider, and current position. |
 | `/bktops notify test update` | Fires a sample `top-position-update` notification (run as a player) to test `notifications.yml` / `discord.yml`. |
 | `/bktops notify test reset` | Fires a sample `timed-top-reset` notification. |
+| `/bktops rewards additem <topId> <position> <amount>` | Adds the item in your main hand as a reward for the given position. |
+| `/bktops rewards addcommand <topId> <position> <command>` | Adds a command to the given reward position. |
+| `/bktops rewards list <topId>` | Lists the configured rewards for a top. |
 
 ## `/bktops compare`
 
@@ -42,3 +45,7 @@ This is the fastest way to tell a parsing/provider problem apart from stale data
 ## `/bktops notify test`
 
 Simulates a notification so you can preview your `notifications.yml` and `discord.yml` without waiting for a real leaderboard change. `update` must be run by a player (it targets you as the involved player); `reset` can be run from console. See [Notifications](/bk-tops/addons/notify).
+
+## `/bktops rewards`
+
+Manages the rewards configured for timed tops. Use `additem` to capture the item in your main hand, `addcommand` to attach console commands, and `list` to inspect the configured positions and reward counts. See [Rewards](/bk-tops/addons/rewards).

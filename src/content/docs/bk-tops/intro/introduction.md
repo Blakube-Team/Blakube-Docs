@@ -59,7 +59,7 @@ Announce leaderboard milestones automatically — built in, no extra plugin requ
 * **Discord**: mirror the same events to a channel via webhook, with optional embeds.
 * **Case-based rules**: per-event, first-match conditions (`position`, ranges, `improved`/`worsened`, new entry...) and audience routing (`all`, `player`, `world`).
 
-See the [Notifications](/bk-tops/addons/notify) page.
+See the [Notifications](/bk-tops/addons/notify) and [Rewards](/bk-tops/addons/rewards) pages.
 
 ## Extras
 * **Multiple databases**: choose between H2 and MySQL according to your needs.
