@@ -18,6 +18,9 @@ All commands require the `bk-tops.admin` permission.
 | `/bktops rewards additem <topId> <position> <amount>` | Adds the item in your main hand as a reward for the given position. |
 | `/bktops rewards addcommand <topId> <position> <command>` | Adds a command to the given reward position. |
 | `/bktops rewards list <topId>` | Lists the configured rewards for a top. |
+| `/bktops history export <topId>` | Saves a snapshot of a top's current leaderboard to `history/exports`. Works with any top at any time. |
+| `/bktops history list <reset\|exports> [topId]` | Lists saved history files. Without a top ID it lists the tops that have history; with one, its saved dates. |
+| `/bktops history show <reset\|exports> <topId> <date> [page]` | Prints a saved leaderboard, 10 positions per page. |
 
 ## `/bktops compare`
 
@@ -49,3 +52,13 @@ Simulates a notification so you can preview your `notifications.yml` and `discor
 ## `/bktops rewards`
 
 Manages the rewards configured for timed tops. Use `additem` to capture the item in your main hand, `addcommand` to attach console commands, and `list` to inspect the configured positions and reward counts. See [Rewards](/bk-tops/addons/rewards).
+
+## `/bktops history`
+
+Reads and creates human-readable snapshots of leaderboards stored on disk (never in the database). Timed tops save a snapshot automatically every time they reset; `export` lets you snapshot any top on demand. Files are grouped by type: `reset` for automatic reset snapshots and `exports` for manual ones.
+
+- `export <topId>` captures the top's **current** leaderboard right now.
+- `list <reset|exports> [topId]` browses what has been saved.
+- `show <reset|exports> <topId> <date> [page]` prints a saved leaderboard, 10 positions per page.
+
+The `<reset|exports>` type, top IDs and dates are all tab-completable. See [History](/bk-tops/config/history) for the folder layout and file format.

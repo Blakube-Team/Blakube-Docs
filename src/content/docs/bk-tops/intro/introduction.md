@@ -59,6 +59,14 @@ Announce leaderboard milestones automatically — built in, no extra plugin requ
 * **Discord**: mirror the same events to a channel via webhook, with optional embeds.
 * **Case-based rules**: per-event, first-match conditions (`position`, ranges, `improved`/`worsened`, new entry...) and audience routing (`all`, `player`, `world`).
 
+## Leaderboard history
+Keep human-readable records of your rankings without touching the database:
+* **Automatic reset history**: every time a timed top resets, the final leaderboard is saved as a readable `.yml` file.
+* **On-demand exports**: snapshot any top's current leaderboard at any moment with `/bktops history export` — great for mid-cycle records.
+* **In-game browsing**: list and read saved snapshots straight from chat, 10 positions per page, with full tab-completion.
+
+See the [History & Exports](/bk-tops/config/history) page for details.
+
 See the [Notifications](/bk-tops/addons/notify) and [Rewards](/bk-tops/addons/rewards) pages.
 
 ## Extras

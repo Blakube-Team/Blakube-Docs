@@ -28,6 +28,7 @@ export default defineConfig({
 						{ label: 'Placeholders', slug: 'bk-tops/config/placeholders' },
 						{ label: 'Commands',     slug: 'bk-tops/config/commands' },
 						{ label: 'Permissions',  slug: 'bk-tops/config/permissions' },
+						{ label: 'History',      slug: 'bk-tops/config/history' },
 						{
 							label: 'Addons',
 							items: [
